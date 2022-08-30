@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://unpkg.com/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"longhao-chen.github.io","root":"/blog/","images":"/blog/images","scheme":"Muse","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/config.js"></script>
+
+    <meta name="description" content="Markdown是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown常用语法">
+<meta property="og:url" content="https://longhao-chen.github.io/blog/2022/08/16/Markdown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:site_name" content="Longhao.Chen&#39;s blog">
+<meta property="og:description" content="Markdown是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-16T10:15:15.000Z">
+<meta property="article:modified_time" content="2022-08-21T13:00:07.000Z">
+<meta property="article:author" content="Longhao.Chen">
+<meta property="article:tag" content="hexo">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://longhao-chen.github.io/blog/2022/08/16/Markdown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://longhao-chen.github.io/blog/2022/08/16/Markdown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/","path":"2022/08/16/Markdown常用语法/","title":"Markdown常用语法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Markdown常用语法 | Longhao.Chen's blog</title>
+  
+
+  <script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?8b29dc202829e51f566b3ba2d587a4d9"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Longhao.Chen's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%87%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">标题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">示例:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E4%BD%93"><span class="nav-number">2.</span> <span class="nav-text">字体</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">示例：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C"><span class="nav-number">2.2.</span> <span class="nav-text">效果:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">引用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-1"><span class="nav-number">3.1.</span> <span class="nav-text">示例:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C-1"><span class="nav-number">3.2.</span> <span class="nav-text">效果:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E5%89%B2%E7%BA%BF"><span class="nav-number">4.</span> <span class="nav-text">分割线</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-2"><span class="nav-number">4.1.</span> <span class="nav-text">示例:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C-2"><span class="nav-number">4.2.</span> <span class="nav-text">效果:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B6%85%E9%93%BE%E6%8E%A5"><span class="nav-number">5.</span> <span class="nav-text">超链接</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-3"><span class="nav-number">5.1.</span> <span class="nav-text">示例:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C-3"><span class="nav-number">5.2.</span> <span class="nav-text">效果:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSPMRT"><span class="nav-number">5.3.</span> <span class="nav-text">CSPMRT</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="nav-number">6.</span> <span class="nav-text">代码块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E5%A6%82"><span class="nav-number">6.1.</span> <span class="nav-text">例如:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-4"><span class="nav-number">6.2.</span> <span class="nav-text">示例:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C-4"><span class="nav-number">6.3.</span> <span class="nav-text">效果:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">6.4.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%A8%E6%A0%BC"><span class="nav-number">7.</span> <span class="nav-text">表格</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="nav-number">7.1.</span> <span class="nav-text">语法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C-5"><span class="nav-number">7.2.</span> <span class="nav-text">效果:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A9%BA%E6%A0%BC"><span class="nav-number">8.</span> <span class="nav-text">空格</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-5"><span class="nav-number">8.1.</span> <span class="nav-text">示例:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C-6"><span class="nav-number">8.2.</span> <span class="nav-text">效果:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#amp-nbsp-%E6%96%87%E5%AD%97%E3%80%82"><span class="nav-number">8.3.</span> <span class="nav-text">&amp;nbsp; 文字。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F"><span class="nav-number">9.</span> <span class="nav-text">数学公式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%A7%92%E6%A0%87-%E5%92%8C-%E5%BC%80%E6%96%B9%EF%BC%9A"><span class="nav-number">9.1.</span> <span class="nav-text">1.角标 和 开方：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E6%9E%9C-7"><span class="nav-number">9.1.1.</span> <span class="nav-text">效果:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%88%86%E6%95%B0%E8%A1%A8%E8%BE%BE%EF%BC%9A"><span class="nav-number">9.2.</span> <span class="nav-text">2.分数表达：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E6%9E%9C-8"><span class="nav-number">9.2.1.</span> <span class="nav-text">效果:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%B1%82%E5%92%8C%E4%B8%8E%E8%81%94%E4%B9%98%EF%BC%9A"><span class="nav-number">9.3.</span> <span class="nav-text">3.求和与联乘：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E6%9E%9C-9"><span class="nav-number">9.3.1.</span> <span class="nav-text">效果:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%A7%AF%E5%88%86"><span class="nav-number">9.4.</span> <span class="nav-text">4.积分:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E6%9E%9C-10"><span class="nav-number">9.4.1.</span> <span class="nav-text">效果:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%9E%81%E9%99%90"><span class="nav-number">9.5.</span> <span class="nav-text">5.极限:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E6%9E%9C-11"><span class="nav-number">9.5.1.</span> <span class="nav-text">效果:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E7%9F%A2%E9%87%8F"><span class="nav-number">9.6.</span> <span class="nav-text">6.矢量:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E6%9E%9C-12"><span class="nav-number">9.6.1.</span> <span class="nav-text">效果:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%85%B6%E4%BB%96"><span class="nav-number">9.7.</span> <span class="nav-text">7.其他:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%BF%E7%AD%BE"><span class="nav-number">10.</span> <span class="nav-text">便签</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C%EF%BC%9A"><span class="nav-number">10.1.</span> <span class="nav-text">效果：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%8C%E5%86%85%E6%A0%87%E7%AD%BE"><span class="nav-number">11.</span> <span class="nav-text">行内标签</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C%EF%BC%9A-1"><span class="nav-number">11.1.</span> <span class="nav-text">效果：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B1%85%E4%B8%AD%E5%BC%95%E7%94%A8"><span class="nav-number">12.</span> <span class="nav-text">居中引用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C%EF%BC%9A-2"><span class="nav-number">12.1.</span> <span class="nav-text">效果：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-number">13.</span> <span class="nav-text">流程图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C-13"><span class="nav-number">13.1.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E7%BB%84"><span class="nav-number">14.</span> <span class="nav-text">图片组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%81%EF%BC%9Ahttps-theme-next-js-org-docs-tag-plugins-group-pictures-html"><span class="nav-number">14.1.</span> <span class="nav-text">见：https:&#x2F;&#x2F;theme-next.js.org&#x2F;docs&#x2F;tag-plugins&#x2F;group-pictures.html</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tabs"><span class="nav-number">15.</span> <span class="nav-text">Tabs</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Longhao.Chen"
+      src="/blog/images/clh-avatar.gif">
+  <p class="site-author-name" itemprop="name">Longhao.Chen</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/blog/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/blog/tags/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Longhao-Chen" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Longhao-Chen" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Longhao.Chen@outlook.com" title="E-Mail → mailto:Longhao.Chen@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://cspmrt.github.io/" title="https:&#x2F;&#x2F;cspmrt.github.io" rel="noopener" target="_blank">CSPMRT</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://longhao-chen.github.io/blog/2022/08/16/Markdown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/clh-avatar.gif">
+      <meta itemprop="name" content="Longhao.Chen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Longhao.Chen's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Markdown常用语法 | Longhao.Chen's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Markdown常用语法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-16 18:15:15" itemprop="dateCreated datePublished" datetime="2022-08-16T18:15:15+08:00">2022-08-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-21 21:00:07" itemprop="dateModified" datetime="2022-08-21T21:00:07+08:00">2022-08-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>14 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>Markdown是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。</p>
+<span id="more"></span>
+<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>在想要设置为标题的文字前面加#来表示<br>一个#是一级标题，二个#是二级标题，以此类推。支持六级标题。</p>
+<p>注：在#后跟个空格再写文字。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h2><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 这是一级标题</span><br><span class="line">## 这是二级标题</span><br><span class="line">### 这是三级标题</span><br><span class="line">#### 这是四级标题</span><br><span class="line">##### 这是五级标题</span><br><span class="line">###### 这是六级标题</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h1><ul>
+<li>加粗</li>
+</ul>
+<p>要加粗的文字左右分别用两个*号包起来</p>
+<ul>
+<li>斜体</li>
+</ul>
+<p>要倾斜的文字左右分别用一个*号包起来</p>
+<ul>
+<li>斜体加粗</li>
+</ul>
+<p>要倾斜和加粗的文字左右分别用三个*号包起来</p>
+<ul>
+<li>删除线</li>
+</ul>
+<p>要加删除线的文字左右分别用两个~~号包起来</p>
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><pre><code>**这是加粗的文字**
+*这是倾斜的文字*`
+***这是斜体加粗的文字***
+~~这是加删除线的文字~~
+</code></pre>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果:"></a>效果:</h2><p><strong>这是加粗的文字</strong><br><em>这是倾斜的文字</em>&#96;<br><em><strong>这是斜体加粗的文字</strong></em><br><del>这是加删除线的文字</del></p>
+<hr>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>在引用的文字前加&gt;即可。引用也可以嵌套，如加两个&gt;&gt;三个&gt;&gt;&gt;</p>
+<h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例:"></a>示例:</h2><pre><code>&gt;这是引用的内容
+&gt;&gt;这是引用的内容
+&gt;&gt;&gt;这是引用的内容
+</code></pre>
+<h2 id="效果-1"><a href="#效果-1" class="headerlink" title="效果:"></a>效果:</h2><blockquote>
+<p>这是引用的内容</p>
+<blockquote>
+<p>这是引用的内容</p>
+<blockquote>
+<p>这是引用的内容</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<hr>
+<h1 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h1><p>三个或者三个以上的 - 或者 * 都可以。</p>
+<h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例:"></a>示例:</h2><pre><code>---
+***
+</code></pre>
+<h2 id="效果-2"><a href="#效果-2" class="headerlink" title="效果:"></a>效果:</h2><hr>
+<hr>
+<p>效果都一样。</p>
+<hr>
+<h1 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h1><h2 id="示例-3"><a href="#示例-3" class="headerlink" title="示例:"></a>示例:</h2><pre><code>[超链接名](超链接地址 &quot;超链接title&quot;)
+注:title可加可不加。
+例:
+[CSPMRT](https://cspmrt.github.io &quot;CSPMT&quot;)
+</code></pre>
+<h2 id="效果-3"><a href="#效果-3" class="headerlink" title="效果:"></a>效果:</h2><h2 id="CSPMRT"><a href="#CSPMRT" class="headerlink" title="CSPMRT"></a><a target="_blank" rel="noopener" href="https://cspmrt.github.io/" title="CSPMT">CSPMRT</a></h2><h1 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h1><p>单行代码：代码之间分别用一个&#96;(反引号)包起来。</p>
+<h2 id="例如"><a href="#例如" class="headerlink" title="例如:"></a>例如:</h2><pre><code>`代码`
+</code></pre>
+<p>多行代码:代码之间分别用三个反引号包起来，且两边的反引号单独占一行。</p>
+<h2 id="示例-4"><a href="#示例-4" class="headerlink" title="示例:"></a>示例:</h2><pre><code>\```(实际使用去除\，这里是防止把反引号解析成代码块标记)
+代码
+\```(实际使用去除\，这里是防止把反引号解析成代码块标记)
+</code></pre>
+<h2 id="效果-4"><a href="#效果-4" class="headerlink" title="效果:"></a>效果:</h2><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a><code>代码</code></h2><h1 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h1><h2 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h2><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">表头|<span class="string">表头</span>|<span class="string">表头</span></span><br><span class="line"><span class="string">---</span>|<span class="string">:--:</span>|<span class="string">---:</span></span><br><span class="line"><span class="string">内容</span>|<span class="string">内容</span>|<span class="string">内容</span>|</span><br><span class="line">内容|<span class="string">内容</span>|<span class="string">内容</span>|</span><br><span class="line">第二行分割表头和内容。</span><br><span class="line">- 有一个就行，为了对齐，多加了几个</span><br><span class="line">文字默认居左</span><br><span class="line">-两边加：表示文字居中</span><br><span class="line">-右边加：表示文字居右</span><br></pre></td></tr></table></figure>
+<h2 id="效果-5"><a href="#效果-5" class="headerlink" title="效果:"></a>效果:</h2><table>
+<thead>
+<tr>
+<th>表头</th>
+<th align="center">表头</th>
+<th align="right">表头</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>内容</td>
+<td align="center">内容</td>
+<td align="right">内容</td>
+</tr>
+<tr>
+<td>内容</td>
+<td align="center">内容</td>
+<td align="right">内容</td>
+</tr>
+</tbody></table>
+<h1 id="空格"><a href="#空格" class="headerlink" title="空格"></a>空格</h1><p>这markdown中，空格使用<code>&amp;nbsp;</code>表示，注意<code>&amp;nbsp;</code>与文字之间有一个空格。</p>
+<h2 id="示例-5"><a href="#示例-5" class="headerlink" title="示例:"></a>示例:</h2><pre><code>&amp;nbsp; 文字。
+</code></pre>
+<h2 id="效果-6"><a href="#效果-6" class="headerlink" title="效果:"></a>效果:</h2><h2 id="amp-nbsp-文字。"><a href="#amp-nbsp-文字。" class="headerlink" title="&amp;nbsp; 文字。"></a>&amp;nbsp; 文字。</h2><h1 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h1><ul>
+<li>注意:代码前后记得一定要加 <code>$$</code> 或 <code>$</code> 才可以显示效果。<code>$$</code>中的公式会单独占据一行，<code>$</code>中的公式不会单独占据一行。</li>
+</ul>
+<h2 id="1-角标-和-开方："><a href="#1-角标-和-开方：" class="headerlink" title="1.角标 和 开方："></a>1.角标 和 开方：</h2><pre><code>$c = \sqrt&#123;a^&#123;2&#125;+b_&#123;xy&#125;^&#123;2&#125; +e^&#123;x&#125;&#125;$
+</code></pre>
+<h3 id="效果-7"><a href="#效果-7" class="headerlink" title="效果:"></a>效果:</h3><p>$c &#x3D; \sqrt{a^{2}+b_{xy}^{2} +e^{x}}$</p>
+<h2 id="2-分数表达："><a href="#2-分数表达：" class="headerlink" title="2.分数表达："></a>2.分数表达：</h2><pre><code>$\frac&#123;x^&#123;2&#125;y^&#123;2&#125;&#125;&#123;x+y&#125;$
+</code></pre>
+<h3 id="效果-8"><a href="#效果-8" class="headerlink" title="效果:"></a>效果:</h3><p>$\frac{x^{2}y^{2}}{x+y}$</p>
+<h2 id="3-求和与联乘："><a href="#3-求和与联乘：" class="headerlink" title="3.求和与联乘："></a>3.求和与联乘：</h2><pre><code>$$\sum_&#123;i=0&#125;^&#123;n&#125;$$
+$$\prod_&#123;i=0&#125;^n \frac&#123;1&#125;&#123;i^2&#125;$$
+</code></pre>
+<h3 id="效果-9"><a href="#效果-9" class="headerlink" title="效果:"></a>效果:</h3><p>$$\sum_{i&#x3D;0}^{n}$$<br>$$\prod_{i&#x3D;0}^n \frac{1}{i^2}$$</p>
+<h2 id="4-积分"><a href="#4-积分" class="headerlink" title="4.积分:"></a>4.积分:</h2><pre><code>$$\int_0^2 x^2 &#123;\rm d&#125;x$$
+$$\iint_0^2 x^2 &#123;\rm d&#125;x$$
+</code></pre>
+<h3 id="效果-10"><a href="#效果-10" class="headerlink" title="效果:"></a>效果:</h3><p>$$\int_0^2 x^2 {\rm d}x$$<br>$$\iint_0^2 x^2 {\rm d}x$$</p>
+<h2 id="5-极限"><a href="#5-极限" class="headerlink" title="5.极限:"></a>5.极限:</h2><pre><code>$$\lim\limits_&#123;n \rightarrow +\infty&#125; \frac&#123;1&#125;&#123;n(n+1)&#125;$$
+</code></pre>
+<h3 id="效果-11"><a href="#效果-11" class="headerlink" title="效果:"></a>效果:</h3><p>$$\lim\limits_{n \rightarrow +\infty} \frac{1}{n(n+1)}$$</p>
+<h2 id="6-矢量"><a href="#6-矢量" class="headerlink" title="6.矢量:"></a>6.矢量:</h2><pre><code>$$\vec&#123; a &#125;$$
+</code></pre>
+<h3 id="效果-12"><a href="#效果-12" class="headerlink" title="效果:"></a>效果:</h3><p>$$\vec{ a }$$</p>
+<h2 id="7-其他"><a href="#7-其他" class="headerlink" title="7.其他:"></a>7.其他:</h2><table>
+<thead>
+<tr>
+<th align="center">效果</th>
+<th align="center">代码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$\pm$</td>
+<td align="center"><code>\pm</code></td>
+</tr>
+<tr>
+<td align="center">$\times$</td>
+<td align="center"><code>\times</code></td>
+</tr>
+<tr>
+<td align="center">$\div$</td>
+<td align="center"><code>\div</code></td>
+</tr>
+<tr>
+<td align="center">$\mid$</td>
+<td align="center"><code>\mid</code></td>
+</tr>
+<tr>
+<td align="center">$\nmid$</td>
+<td align="center"><code>\nmid</code></td>
+</tr>
+<tr>
+<td align="center">$\circ$</td>
+<td align="center"><code>\circ</code></td>
+</tr>
+<tr>
+<td align="center">$\leq$</td>
+<td align="center"><code>\leq</code></td>
+</tr>
+<tr>
+<td align="center">$\geq$</td>
+<td align="center"><code>\geq</code></td>
+</tr>
+<tr>
+<td align="center">$\neq$</td>
+<td align="center"><code>\neq</code></td>
+</tr>
+<tr>
+<td align="center">$\approx$</td>
+<td align="center"><code>\approx</code></td>
+</tr>
+<tr>
+<td align="center">$\equiv$</td>
+<td align="center"><code>\equiv</code></td>
+</tr>
+<tr>
+<td align="center">$\coprod$</td>
+<td align="center"><code>\coprod</code></td>
+</tr>
+<tr>
+<td align="center">$\emptyset$</td>
+<td align="center"><code>\emptyset</code></td>
+</tr>
+<tr>
+<td align="center">$\in$</td>
+<td align="center"><code>\in</code></td>
+</tr>
+<tr>
+<td align="center">$\notin$</td>
+<td align="center"><code>\notin</code></td>
+</tr>
+<tr>
+<td align="center">$\subset$</td>
+<td align="center"><code>\subset</code></td>
+</tr>
+<tr>
+<td align="center">$\supset$</td>
+<td align="center"><code>\supset</code></td>
+</tr>
+<tr>
+<td align="center">$\subseteq$</td>
+<td align="center"><code>\subseteq</code></td>
+</tr>
+<tr>
+<td align="center">$\supseteq$</td>
+<td align="center"><code>\supseteq</code></td>
+</tr>
+<tr>
+<td align="center">$\bigcap$</td>
+<td align="center"><code>\bigcap</code></td>
+</tr>
+<tr>
+<td align="center">$\bigcup$</td>
+<td align="center"><code>\bigcup</code></td>
+</tr>
+<tr>
+<td align="center">$\bigvee$</td>
+<td align="center"><code>\bigvee</code></td>
+</tr>
+<tr>
+<td align="center">$\bigwedge$</td>
+<td align="center"><code>\bigwedge</code></td>
+</tr>
+<tr>
+<td align="center">$\log$</td>
+<td align="center"><code>\log</code></td>
+</tr>
+<tr>
+<td align="center">$\lg$</td>
+<td align="center"><code>\lg</code></td>
+</tr>
+<tr>
+<td align="center">$\ln$</td>
+<td align="center"><code>\ln</code></td>
+</tr>
+<tr>
+<td align="center">$\bot$</td>
+<td align="center"><code>\bot</code></td>
+</tr>
+<tr>
+<td align="center">$\angle$</td>
+<td align="center"><code>\angle</code></td>
+</tr>
+<tr>
+<td align="center">$30^\circ$</td>
+<td align="center"><code>30^\circ</code></td>
+</tr>
+<tr>
+<td align="center">$\prime$</td>
+<td align="center"><code>\prime</code></td>
+</tr>
+<tr>
+<td align="center">$\iiint$</td>
+<td align="center"><code>\iiint</code></td>
+</tr>
+<tr>
+<td align="center">$\oint$</td>
+<td align="center"><code>\oint</code></td>
+</tr>
+<tr>
+<td align="center">$\infty$</td>
+<td align="center"><code>\infty</code></td>
+</tr>
+<tr>
+<td align="center">$\nabla$</td>
+<td align="center"><code>\nabla</code></td>
+</tr>
+<tr>
+<td align="center">$\because$</td>
+<td align="center"><code>\because</code></td>
+</tr>
+<tr>
+<td align="center">$\therefore$</td>
+<td align="center"><code>\therefore</code></td>
+</tr>
+<tr>
+<td align="center">$\forall$</td>
+<td align="center"><code>\forall</code></td>
+</tr>
+<tr>
+<td align="center">$\exists$</td>
+<td align="center"><code>\exists</code></td>
+</tr>
+<tr>
+<td align="center">$\not&#x3D;$</td>
+<td align="center"><code>\not=</code></td>
+</tr>
+<tr>
+<td align="center">$\not&gt;$</td>
+<td align="center"><code>\not&gt;</code></td>
+</tr>
+<tr>
+<td align="center">$\not\subset$</td>
+<td align="center"><code>\not\subset</code></td>
+</tr>
+<tr>
+<td align="center">$\hat{y}$</td>
+<td align="center"><code>\hat&#123;y&#125;</code></td>
+</tr>
+<tr>
+<td align="center">$\check{y}$</td>
+<td align="center"><code>\check&#123;y&#125;</code></td>
+</tr>
+<tr>
+<td align="center">$\breve{y}$</td>
+<td align="center"><code>\breve&#123;y&#125;</code></td>
+</tr>
+<tr>
+<td align="center">$\overline{a+b+c+d}$</td>
+<td align="center"><code>\overline&#123;a+b+c+d&#125;</code></td>
+</tr>
+<tr>
+<td align="center">$\underline{a+b+c+d}$</td>
+<td align="center"><code>\underline&#123;a+b+c+d&#125;</code></td>
+</tr>
+<tr>
+<td align="center">$\overbrace{a+\underbrace{b+c}_{1.0}+d}^{2.0}$</td>
+<td align="center"><code>\overbrace&#123;a+\underbrace&#123;b+c&#125;_&#123;1.0&#125;+d&#125;^&#123;2.0&#125;</code></td>
+</tr>
+<tr>
+<td align="center">$\uparrow$</td>
+<td align="center"><code>\uparrow</code></td>
+</tr>
+<tr>
+<td align="center">$\downarrow$</td>
+<td align="center"><code>\downarrow</code></td>
+</tr>
+<tr>
+<td align="center">$\Uparrow$</td>
+<td align="center"><code>\Uparrow</code></td>
+</tr>
+<tr>
+<td align="center">$\Downarrow$</td>
+<td align="center"><code>\Downarrow</code></td>
+</tr>
+<tr>
+<td align="center">$\rightarrow$</td>
+<td align="center"><code>\rightarrow</code></td>
+</tr>
+<tr>
+<td align="center">$\leftarrow$</td>
+<td align="center"><code>\leftarrow</code></td>
+</tr>
+<tr>
+<td align="center">$\Rightarrow$</td>
+<td align="center"><code>\Rightarrow</code></td>
+</tr>
+<tr>
+<td align="center">$\Leftarrow$</td>
+<td align="center"><code>\Leftarrow</code></td>
+</tr>
+<tr>
+<td align="center">$\alpha$</td>
+<td align="center"><code>\alpha</code></td>
+</tr>
+<tr>
+<td align="center">$\beta$</td>
+<td align="center"><code>\beta</code></td>
+</tr>
+<tr>
+<td align="center">$\gamma$</td>
+<td align="center"><code>\gamma</code></td>
+</tr>
+<tr>
+<td align="center">$\Gamma$</td>
+<td align="center"><code>\Gamma</code></td>
+</tr>
+<tr>
+<td align="center">$\delta$</td>
+<td align="center"><code>\delta</code></td>
+</tr>
+<tr>
+<td align="center">$\Delta$</td>
+<td align="center"><code>\Delta</code></td>
+</tr>
+<tr>
+<td align="center">$\epsilon$</td>
+<td align="center"><code>\epsilon</code></td>
+</tr>
+<tr>
+<td align="center">$\varepsilon$</td>
+<td align="center"><code>\varepsilon</code></td>
+</tr>
+<tr>
+<td align="center">$\zeta$</td>
+<td align="center"><code>\zeta</code></td>
+</tr>
+<tr>
+<td align="center">$\eta$</td>
+<td align="center"><code>\eta</code></td>
+</tr>
+<tr>
+<td align="center">$\theta$</td>
+<td align="center"><code>\theta</code></td>
+</tr>
+<tr>
+<td align="center">$\Theta$</td>
+<td align="center"><code>\Theta</code></td>
+</tr>
+<tr>
+<td align="center">$\vartheta$</td>
+<td align="center"><code>\vartheta</code></td>
+</tr>
+<tr>
+<td align="center">$\iota$</td>
+<td align="center"><code>\iota</code></td>
+</tr>
+<tr>
+<td align="center">$\kappa$</td>
+<td align="center"><code>\kappa</code></td>
+</tr>
+<tr>
+<td align="center">$\lambda$</td>
+<td align="center"><code>\lambda</code></td>
+</tr>
+<tr>
+<td align="center">$\Lambda$</td>
+<td align="center"><code>\Lambda</code></td>
+</tr>
+<tr>
+<td align="center">$\mu$</td>
+<td align="center"><code>\mu</code></td>
+</tr>
+<tr>
+<td align="center">$\nu$</td>
+<td align="center"><code>\nu</code></td>
+</tr>
+<tr>
+<td align="center">$\xi$</td>
+<td align="center"><code>\xi</code></td>
+</tr>
+<tr>
+<td align="center">$\Xi$</td>
+<td align="center"><code>\Xi</code></td>
+</tr>
+<tr>
+<td align="center">$\pi$</td>
+<td align="center"><code>\pi</code></td>
+</tr>
+<tr>
+<td align="center">$\Pi$</td>
+<td align="center"><code>\Pi</code></td>
+</tr>
+<tr>
+<td align="center">$\varpi$</td>
+<td align="center"><code>\varpi</code></td>
+</tr>
+<tr>
+<td align="center">$\rho$</td>
+<td align="center"><code>\rho</code></td>
+</tr>
+<tr>
+<td align="center">$\varrho$</td>
+<td align="center"><code>\varrho</code></td>
+</tr>
+<tr>
+<td align="center">$\sigma$</td>
+<td align="center"><code>\sigma</code></td>
+</tr>
+<tr>
+<td align="center">$\Sigma$</td>
+<td align="center"><code>\Sigma</code></td>
+</tr>
+<tr>
+<td align="center">$\varsigma$</td>
+<td align="center"><code>\varsigma</code></td>
+</tr>
+<tr>
+<td align="center">$\tau$</td>
+<td align="center"><code>\tau</code></td>
+</tr>
+<tr>
+<td align="center">$\upsilon$</td>
+<td align="center"><code>\upsilon</code></td>
+</tr>
+<tr>
+<td align="center">$\Upsilon$</td>
+<td align="center"><code>\Upsilon</code></td>
+</tr>
+<tr>
+<td align="center">$\phi$</td>
+<td align="center"><code>\phi</code></td>
+</tr>
+<tr>
+<td align="center">$\Phi$</td>
+<td align="center"><code>\Phi</code></td>
+</tr>
+<tr>
+<td align="center">$\varphi$</td>
+<td align="center"><code>\varphi</code></td>
+</tr>
+<tr>
+<td align="center">$\chi$</td>
+<td align="center"><code>\chi</code></td>
+</tr>
+<tr>
+<td align="center">$\psi$</td>
+<td align="center"><code>\psi</code></td>
+</tr>
+<tr>
+<td align="center">$\Psi$</td>
+<td align="center"><code>\Psi</code></td>
+</tr>
+<tr>
+<td align="center">$\omega$</td>
+<td align="center"><code>\omega</code></td>
+</tr>
+<tr>
+<td align="center">$\Omega$</td>
+<td align="center"><code>\Omega</code></td>
+</tr>
+<tr>
+<td align="center">$\smile$</td>
+<td align="center"><code>\smile</code></td>
+</tr>
+<tr>
+<td align="center">$\frown$</td>
+<td align="center"><code>\frown</code></td>
+</tr>
+<tr>
+<td align="center">$\asymp$</td>
+<td align="center"><code>\asymp</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="便签"><a href="#便签" class="headerlink" title="便签"></a>便签</h1><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name">note</span> %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">文字</span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">endnote</span> %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">note</span> primary %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">primary</span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">endnote</span> %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">note</span> secondary %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">secondary</span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">endnote</span> %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">note</span> success %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">success</span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">endnote</span> %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">note</span> danger %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">danger</span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">endnote</span> %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">note</span> warning %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">warning</span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">endnote</span> %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">note</span> info %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">info</span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">endnote</span> %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">note</span> light %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">light</span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">endnote</span> %&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="效果："><a href="#效果：" class="headerlink" title="效果："></a>效果：</h2><div class="note "><p>文字</p>
+</div>
+
+<div class="note primary"><p>primary</p>
+</div>
+
+<details class="note "><summary><p>secondary</p>
+</summary>
+<p>secondary</p>
+
+</details>
+
+<div class="note success"><p>success</p>
+</div>
+
+<div class="note danger"><p>danger</p>
+</div>
+
+<div class="note warning"><p>warning</p>
+</div>
+
+<div class="note info"><p>info</p>
+</div>
+
+<details class="note "><summary><p>light</p>
+</summary>
+<p>light</p>
+
+</details>
+
+<h1 id="行内标签"><a href="#行内标签" class="headerlink" title="行内标签"></a>行内标签</h1><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% label @ipsum %&#125; &#123;% label primary @primary %&#125; &#123;% label <span class="keyword">default</span> @default %&#125; &#123;% label info @info %&#125; &#123;% label success @success %&#125; &#123;% label <span class="keyword">warning</span> @warning %&#125; &#123;% label danger @danger %&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="效果：-1"><a href="#效果：-1" class="headerlink" title="效果："></a>效果：</h2><mark class="label ">ipsum</mark> <mark class="label primary">primary</mark> <mark class="label default">default</mark> <mark class="label info">info</mark> <mark class="label success">success</mark> <mark class="label warning">warning</mark> <mark class="label danger">danger</mark>
+<hr>
+<h1 id="居中引用"><a href="#居中引用" class="headerlink" title="居中引用"></a>居中引用</h1><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name">centerquote</span> %&#125;</span><span class="language-xml">Something</span><span class="template-tag">&#123;% <span class="name">endcenterquote</span> %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">cq</span> %&#125;</span><span class="language-xml">Something</span><span class="template-tag">&#123;% <span class="name">endcq</span> %&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="效果：-2"><a href="#效果：-2" class="headerlink" title="效果："></a>效果：</h2><blockquote class="blockquote-center">
+<p>Something</p>
+
+</blockquote>
+<blockquote class="blockquote-center">
+<p>Something</p>
+
+</blockquote>
+
+<hr>
+<h1 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h1><p>见: <a target="_blank" rel="noopener" href="https://theme-next.js.org/docs/tag-plugins/mermaid">https://theme-next.js.org/docs/tag-plugins/mermaid</a></p>
+<h2 id="效果-13"><a href="#效果-13" class="headerlink" title="效果"></a>效果</h2><pre class="mermaid">
+graph TD
+A[Hard] --&gt;|Text| B(Round)
+B --&gt; C{Decision}
+C --&gt;|One| D[Result 1]
+C --&gt;|Two| E[Result 2]
+</pre>
+<hr>
+<pre class="mermaid">
+sequenceDiagram
+Alice-&gt;&gt;John: Hello John, how are you?
+loop Healthcheck
+    John-&gt;&gt;John: Fight against hypochondria
+end
+Note right of John: Rational thoughts!
+John--&gt;&gt;Alice: Great!
+John-&gt;&gt;Bob: How about you?
+Bob--&gt;&gt;John: Jolly good!
+</pre>
+<hr>
+<pre><code class="highlight mermaid">classDiagram
+Class01 &lt;|-- AveryLongClass : Cool
+Class03 *-- Class04
+Class05 o-- Class06
+Class07 .. Class08
+Class09 --&gt; C2 : Where am i?
+Class09 --* C3
+Class09 --|&gt; Class07
+Class07 : equals()
+Class07 : Object[] elementData
+Class01 : size()
+Class01 : int chimp
+Class01 : int gorilla
+Class08 &lt;--&gt; C2: Cool label</code></pre>
+<hr>
+<pre class="mermaid">
+gantt
+dateFormat  YYYY-MM-DD
+section Section
+Completed :done,    des1, 2014-01-06,2014-01-08
+Active        :active,  des2, 2014-01-07, 3d
+Parallel 1   :         des3, after des1, 1d
+Parallel 2   :         des4, after des1, 1d
+Parallel 3   :         des5, after des3, 1d
+Parallel 4   :         des6, after des4, 1d
+</pre>
+<hr>
+<pre class="mermaid">
+pie
+&quot;Dogs&quot; : 386
+&quot;Cats&quot; : 85
+&quot;Rats&quot; : 15
+</pre>
+<hr>
+<pre class="mermaid">
+journey
+title My working day
+section Go to work
+  Make tea: 5: Me
+  Go upstairs: 3: Me
+  Do work: 1: Me, Cat
+section Go home
+  Go downstairs: 5: Me
+  Sit down: 3: Me
+</pre>
+<hr>
+<h1 id="图片组"><a href="#图片组" class="headerlink" title="图片组"></a>图片组</h1><h2 id="见：https-theme-next-js-org-docs-tag-plugins-group-pictures-html"><a href="#见：https-theme-next-js-org-docs-tag-plugins-group-pictures-html" class="headerlink" title="见：https://theme-next.js.org/docs/tag-plugins/group-pictures.html"></a>见：<a target="_blank" rel="noopener" href="https://theme-next.js.org/docs/tag-plugins/group-pictures.html">https://theme-next.js.org/docs/tag-plugins/group-pictures.html</a></h2><h1 id="Tabs"><a href="#Tabs" class="headerlink" title="Tabs"></a>Tabs</h1><p>见：<a target="_blank" rel="noopener" href="https://theme-next.js.org/docs/tag-plugins/tabs.html">https://theme-next.js.org/docs/tag-plugins/tabs.html</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/hexo/" rel="tag"># hexo</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2022/08/16/LUKS%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" rel="next" title="LUKS设备使用说明">
+                  LUKS设备使用说明 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments">
+    <script src="https://giscus.app/client.js"
+        data-repo="longhao-chen/blog" 
+        data-repo-id="R_kgDOH07ucQ" 
+        data-category="Announcements"
+        data-category-id="DIC_kwDOH07ucc4CQ2pD"
+        data-mapping="pathname" 
+        data-reactions-enabled="1" 
+        data-emit-metadata="1" 
+        data-theme="dark"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        data-input-position="top"
+        data-loading="lazy"
+        async>
+    </script>
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Longhao.Chen</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">13k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">35 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/comments.js"></script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/utils.js"></script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/motion.js"></script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/schemes/muse.js"></script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/next-boot.js"></script>
+
+  
+<script src="https://unpkg.com/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://unpkg.com/mermaid@9.1.3/dist/mermaid.min.js","integrity":"sha256-TIYL00Rhw/8WaoUhYTLX9SKIEFdXxg+yMWSLVUbhiLg="}}</script>
+  <script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/tags/mermaid.js"></script>
+
+
+  <script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://unpkg.com/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

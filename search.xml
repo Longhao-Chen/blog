@@ -1,0 +1,998 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>GnuPG 生成ECC密钥</title>
+    <url>/blog/2022/08/16/GnuPG-%E7%94%9F%E6%88%90ECC%E5%AF%86%E9%92%A5/</url>
+    <content><![CDATA[<h1 id="GnuPG简介"><a href="#GnuPG简介" class="headerlink" title="GnuPG简介"></a>GnuPG简介</h1><p>GNU Privacy Guard（GnuPG或GPG）是一种加密软件，它是PGP加密软件的满足GPL的替代物。 GnuPG依照由IETF订定的OpenPGP技术标准设计。GnuPG用于加密、数字签名及产生非对称钥匙对的软件。 具体简介可以看：<a href="https://baike.baidu.com/item/GnuPG">https://baike.baidu.com/item/GnuPG</a></p>
+<p>如果你想尝试其中的一些功能，可以试试我开发的网页版的完全兼容GnuPG的加密程序OpenPGP-Web：<a href="https://longhao-chen.github.io/pgpweb/">https://Longhao-Chen.github.io/pgpweb/</a></p>
+<span id="more"></span>
+<h1 id="ECC简介"><a href="#ECC简介" class="headerlink" title="ECC简介"></a>ECC简介</h1><p>ECC是椭圆曲线密码学的缩写，一种建立公开密钥加密的演算法，基于椭圆曲线数学。椭圆曲线在密码学中的使用是在1985年由Neal Koblitz和Victor Miller分别独立提出的。 ECC的主要优势是在某些情况下它比其他的方法使用更小的密钥——比如RSA加密算法——提供相当的或更高等级的安全。 具体简介可以看：<a href="https://baike.baidu.com/item/%E6%A4%AD%E5%9C%86%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/10305582">https://baike.baidu.com/item/%E6%A4%AD%E5%9C%86%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/10305582</a></p>
+<p>算法原理可以看：<a href="https://zhuanlan.zhihu.com/p/36326221">https://zhuanlan.zhihu.com/p/36326221</a></p>
+<h1 id="GnuPG生成ECC密钥"><a href="#GnuPG生成ECC密钥" class="headerlink" title="GnuPG生成ECC密钥"></a>GnuPG生成ECC密钥</h1><p>因为ECC是一种比较新的算法，在gpg默认的密钥生成菜单中并不包含ECC密钥，如果需要生成ECC密钥， 则需要启用专家模式。</p>
+<p>执行命令：<code>gpg –full-gen-key –expert</code></p>
+<p>会返回:</p>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">gpg (GnuPG) <span class="number">2</span>.<span class="number">2</span>.<span class="number">12</span><span class="comment">; Copyright (C) 2018 Free Software Foundation, Inc.</span></span><br><span class="line">This is free software: you are free to change <span class="keyword">and </span>redistribute it.</span><br><span class="line">There is NO WARRANTY, to the <span class="keyword">extent </span>permitted <span class="keyword">by </span>law.</span><br><span class="line"></span><br><span class="line">请选择您要使用的密钥类型：</span><br><span class="line">   (<span class="number">1</span>) RSA 和 RSA （默认）</span><br><span class="line">   (<span class="number">2</span>) DSA 和 Elgamal</span><br><span class="line">   (<span class="number">3</span>) DSA（仅用于签名）</span><br><span class="line">   (<span class="number">4</span>) RSA（仅用于签名）</span><br><span class="line">   (<span class="number">7</span>) DSA（自定义用途）</span><br><span class="line">   (<span class="number">8</span>) RSA（自定义用途）</span><br><span class="line">   (<span class="number">9</span>) <span class="built_in">ECC</span> 和 <span class="built_in">ECC</span></span><br><span class="line">(<span class="number">10</span>) <span class="built_in">ECC</span>（仅用于签名）</span><br><span class="line">(<span class="number">11</span>) <span class="built_in">ECC</span>（自定义用途）</span><br><span class="line">(<span class="number">13</span>) 现存的密钥</span><br><span class="line">您的选择是？</span><br></pre></td></tr></table></figure>
+<p>9,10,11即为生成ECC密钥。我们选择 (9) ECC 和 ECC</p>
+<p>然后就会进入曲线选择菜单</p>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line">请选择您想要使用的椭圆曲线：</span><br><span class="line">   (<span class="number">1</span>) Curve <span class="number">25519</span></span><br><span class="line">   (<span class="number">3</span>) NIST <span class="selector-tag">P</span>-<span class="number">256</span></span><br><span class="line">   (<span class="number">4</span>) NIST <span class="selector-tag">P</span>-<span class="number">384</span></span><br><span class="line">   (<span class="number">5</span>) NIST <span class="selector-tag">P</span>-<span class="number">521</span></span><br><span class="line">   (<span class="number">6</span>) Brainpool <span class="selector-tag">P</span>-<span class="number">256</span></span><br><span class="line">   (<span class="number">7</span>) Brainpool <span class="selector-tag">P</span>-<span class="number">384</span></span><br><span class="line">   (<span class="number">8</span>) Brainpool <span class="selector-tag">P</span>-<span class="number">512</span></span><br><span class="line">   (<span class="number">9</span>) secp256k1</span><br><span class="line">您的选择是？</span><br></pre></td></tr></table></figure>
+<p>这里我推荐使用 (1) Curve 25519</p>
+<blockquote>
+<p>Note:<br>关于Curve 25519可以参见：<a href="https://www.zhihu.com/question/290541183/answer/529676502">https://www.zhihu.com/question/290541183/answer/529676502</a></p>
+</blockquote>
+<p>接下来就和创建普通RSA密钥差不多，按照说明去填即可。</p>
+]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>密码学</category>
+      </categories>
+      <tags>
+        <tag>密码学</tag>
+        <tag>GnuPG</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Julia 求解微分方程</title>
+    <url>/blog/2022/08/16/Julia-%E6%B1%82%E8%A7%A3%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</url>
+    <content><![CDATA[<p>本文为使用 <code>DifferentialEquations.jl</code> 求解微分方程的一个例子。</p>
+<span id="more"></span>
+
+<h1 id="安装求解器"><a href="#安装求解器" class="headerlink" title="安装求解器"></a>安装求解器</h1><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">]<span class="built_in">add</span> DifferentialEquations</span><br></pre></td></tr></table></figure>
+<p>为方便绘图，建议安装 <code>Plots.jl</code> 这个包</p>
+<h1 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h1><p>在这个实例中，我们将求解方程<br>$$<br>\begin{cases}<br>\frac{\rm du}{\rm dt}&#x3D;1.01u\\<br>u(0)&#x3D;0.5<br>\end{cases}<br>$$</p>
+<h2 id="定义问题"><a href="#定义问题" class="headerlink" title="定义问题"></a>定义问题</h2><figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> eq!(du, u, p, t)</span><br><span class="line">    du = p*u</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">u0 = <span class="number">0.5</span></span><br><span class="line">p = <span class="number">1.01</span>  <span class="comment">//传入的参数</span></span><br><span class="line">tspan = (<span class="number">0.0</span>,<span class="number">1.0</span>)  <span class="comment">//求解的时间区间</span></span><br><span class="line">prob = <span class="constructor">ODEProblem(<span class="params">eq</span>!,<span class="params">u0</span>,<span class="params">tspan</span>,<span class="params">p</span>)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="求解及求解器参数"><a href="#求解及求解器参数" class="headerlink" title="求解及求解器参数"></a>求解及求解器参数</h2><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="comment">//直接求解</span></span><br><span class="line">sol = <span class="built_in">solve</span>(prob)</span><br><span class="line"></span><br><span class="line"><span class="comment">//相对误差控制在1e-6以内</span></span><br><span class="line">sol = <span class="built_in">solve</span>(prob,reltol=<span class="number">1</span>e-<span class="number">6</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//每隔0.1个时间点保存一次，此参数 也可传入一个要保存点的数组</span></span><br><span class="line">sol = <span class="built_in">solve</span>(prob,saveat=<span class="number">0.1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//只保存端点值</span></span><br><span class="line">sol = <span class="built_in">solve</span>(prob,save_everystep=false)</span><br><span class="line"></span><br><span class="line"><span class="comment">//必须求解1.0, 1.5, 2.0这几个点，此参数可以与 saveat 连用，也可以帮助处理方程不连续</span></span><br><span class="line">sol = <span class="built_in">solve</span>(prob,tstops=<span class="selector-attr">[1.0, 1.5, 2.0]</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//插值只使用一阶插值，默认为三阶，因为有一些阶三阶导数不连续</span></span><br><span class="line">sol = <span class="built_in">solve</span>(prob,dense=false)</span><br></pre></td></tr></table></figure>
+<h2 id="绘图"><a href="#绘图" class="headerlink" title="绘图"></a>绘图</h2><p>绘图需要使用 <code>Plots.jl</code> 这个包</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="comment">//直接绘图</span></span><br><span class="line"><span class="function"><span class="title">plot</span><span class="params">(sol)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//只使用一阶插值绘图，默认为三阶插值</span></span><br><span class="line"><span class="function"><span class="title">plot</span><span class="params">(sol,denseplot=false)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//只绘制0-1s这个时间段</span></span><br><span class="line"><span class="function"><span class="title">plot</span><span class="params">(sol, tspan=(<span class="number">0.0</span>,<span class="number">1.0</span>)</span></span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//只绘制解中第一个变量，这对于微分方程组有用</span></span><br><span class="line"><span class="function"><span class="title">plot</span><span class="params">(sol,vars=[<span class="number">1</span>])</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//绘制之后保存图片</span></span><br><span class="line"><span class="function"><span class="title">savefig</span><span class="params">(<span class="string">&quot;myplot.png&quot;</span>)</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="查看解"><a href="#查看解" class="headerlink" title="查看解"></a>查看解</h2><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获得在t处的解值</span></span><br><span class="line"><span class="function"><span class="title">sol</span><span class="params">(t)</span></span></span><br></pre></td></tr></table></figure>
+
+<h1 id="更多例子及用法"><a href="#更多例子及用法" class="headerlink" title="更多例子及用法"></a>更多例子及用法</h1><p>参考官方文档：<a href="https://diffeq.sciml.ai/stable/">https://diffeq.sciml.ai/stable/</a></p>
+]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>数值计算</category>
+      </categories>
+      <tags>
+        <tag>数值计算</tag>
+        <tag>数学</tag>
+        <tag>物理学</tag>
+        <tag>微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo+mathjax 换行问题</title>
+    <url>/blog/2022/08/16/hexo-mathjax-%E6%8D%A2%E8%A1%8C%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>在<code>hexo</code>中写公式一般是用<code>LaTex</code>写然后利用<code>Mathjax</code>进行渲染显示，但是当编写多行公式的时候，直接使用<code>\\</code>换行的方法失效，需要使用另外的一些方法进行换行。这里我给出一些换行的例子。</p>
+<span id="more"></span>
+<h1 id="直接换行"><a href="#直接换行" class="headerlink" title="直接换行"></a>直接换行</h1><figure class="highlight dust"><table><tr><td class="code"><pre><span class="line"><span class="language-xml">\begin</span><span class="template-variable">&#123;align&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">a_</span><span class="template-variable">&#123;11&#125;</span><span class="language-xml">&amp; =b_</span><span class="template-variable">&#123;11&#125;</span><span class="language-xml">\\\\</span></span><br><span class="line"><span class="language-xml">a_</span><span class="template-variable">&#123;22&#125;</span><span class="language-xml">&amp; =b_</span><span class="template-variable">&#123;22&#125;</span><span class="language-xml">+c_</span><span class="template-variable">&#123;22&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">\end</span><span class="template-variable">&#123;align&#125;</span></span><br></pre></td></tr></table></figure>
+<p>效果：<br>$$<br>\begin{align}<br>a_{11}&amp; &#x3D;b_{11}\\<br>a_{22}&amp; &#x3D;b_{22}+c_{22}<br>\end{align}<br>$$</p>
+<h1 id="使用大括号"><a href="#使用大括号" class="headerlink" title="使用大括号"></a>使用大括号</h1><figure class="highlight dust"><table><tr><td class="code"><pre><span class="line"><span class="language-xml">\begin</span><span class="template-variable">&#123;cases&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">a_</span><span class="template-variable">&#123;11&#125;</span><span class="language-xml">&amp; =b_</span><span class="template-variable">&#123;11&#125;</span><span class="language-xml">\\\\</span></span><br><span class="line"><span class="language-xml">a_</span><span class="template-variable">&#123;22&#125;</span><span class="language-xml">&amp; =b_</span><span class="template-variable">&#123;22&#125;</span><span class="language-xml">+c_</span><span class="template-variable">&#123;22&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">\end</span><span class="template-variable">&#123;cases&#125;</span></span><br></pre></td></tr></table></figure>
+<p>效果：<br>$$<br>\begin{cases}<br>a_{11}&amp; &#x3D;b_{11}\\<br>a_{22}&amp; &#x3D;b_{22}+c_{22}<br>\end{cases}<br>$$</p>
+<p>以上是我现在正在使用的两种方法，如果有更好的解决方案，欢迎在评论区提出。</p>
+]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>LaTex</tag>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LUKS设备使用说明</title>
+    <url>/blog/2022/08/16/LUKS%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</url>
+    <content><![CDATA[<p>LUKS （Linux Unified Key Setup）是 Linux 硬盘加密的标准。我们可以使用这个来加密 Linux 下的分区。</p>
+<span id="more"></span>
+<h1 id="创建一个LUKS设备"><a href="#创建一个LUKS设备" class="headerlink" title="创建一个LUKS设备"></a>创建一个LUKS设备</h1><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">cryptsetup</span> -y luksFormat 设备名</span><br></pre></td></tr></table></figure>
+<p><strong>注意：yes确认需要大写</strong></p>
+<h1 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h1><p>假设设备名为<code>/dev/sdb1</code></p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">sudo cryptsetup open <span class="regexp">/dev/</span>sdb1 data</span><br></pre></td></tr></table></figure>
+<p>现在我们就可以使用解密后的块设备 <code>/dev/mapper/data</code></p>
+<p>注意： 如果显示创建回环设备失败，可以尝试 <code>modprobe loop</code></p>
+<h1 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h1><figure class="highlight haskell"><table><tr><td class="code"><pre><span class="line"><span class="title">sudo</span> cryptsetup close <span class="class"><span class="keyword">data</span></span></span><br></pre></td></tr></table></figure>
+
+<h1 id="修改口令"><a href="#修改口令" class="headerlink" title="修改口令"></a>修改口令</h1><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">sudo cryptsetup luksChangeKey <span class="tag">&lt;<span class="name">device</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="查看信息和口令添加移除操作"><a href="#查看信息和口令添加移除操作" class="headerlink" title="查看信息和口令添加移除操作"></a>查看信息和口令添加移除操作</h1><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">sudo cryptsetup luksDump <span class="regexp">/dev/</span>sdb1</span><br><span class="line">sudo cryptsetup luksAddKey <span class="regexp">/dev/</span>sdb1</span><br><span class="line">sudo cryptsetup luksRemoveKey <span class="regexp">/dev/</span>sdb1</span><br><span class="line">sudo cryptsetup status data</span><br></pre></td></tr></table></figure>
+
+<h1 id="备份和恢复luksHeader"><a href="#备份和恢复luksHeader" class="headerlink" title="备份和恢复luksHeader"></a>备份和恢复luksHeader</h1><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">sudo cryptsetup luksHeaderBackup <span class="symbol">&lt;device&gt;</span> --header-backup-<span class="keyword">file</span> <span class="symbol">&lt;file&gt;</span></span><br><span class="line">sudo cryptsetup luksHeaderRestore <span class="symbol">&lt;device&gt;</span> --header-backup-<span class="keyword">file</span> <span class="symbol">&lt;file&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="擦除密钥头"><a href="#擦除密钥头" class="headerlink" title="擦除密钥头"></a>擦除密钥头</h1><p>这会造成设备无法访问</p>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line">sudo cryptsetup <span class="built_in">erase</span> &lt;device&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>密码学</category>
+      </categories>
+      <tags>
+        <tag>密码学</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo 常用命令</title>
+    <url>/blog/2022/08/17/hexo-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<table>
+<thead>
+<tr>
+<th align="center">用途</th>
+<th>命令</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">新建草稿</td>
+<td><code>hexo new draft &#39;标题&#39;</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">发布草稿</td>
+<td><code>hexo publish draft &#39;标题&#39;</code></td>
+<td align="center">会根据文章模板自动补充时间等信息</td>
+</tr>
+<tr>
+<td align="center">启动本地服务器</td>
+<td><code>hexo s</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">启动本地服务器并加载草稿</td>
+<td><code>hexo s --drafts</code></td>
+<td align="center">如果草稿没有设置时间，默认时间为UNIX时间戳0时</td>
+</tr>
+<tr>
+<td align="center">生成并部署网页</td>
+<td><code>hexo g -d</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">清理缓存</td>
+<td><code>hexo clean</code></td>
+<td align="center">建议在进行比较大修改后运行此命令</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>群的基本概念(1)</title>
+    <url>/blog/2022/08/17/%E7%BE%A4%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5(1)/</url>
+    <content><![CDATA[<p>这里主要给出一些群的基本概念：群、群的划分、同构和同态，便于查阅。可能会不定时更新。</p>
+<span id="more"></span>
+<h1 id="群"><a href="#群" class="headerlink" title="群"></a>群</h1><h2 id="群的一种定义"><a href="#群的一种定义" class="headerlink" title="群的一种定义"></a>群的一种定义</h2><p>一个非空集合$G$对于一个叫乘法的代数运算叫做一个群，如果</p>
+<ol>
+<li>$G$对这个乘法来说是封闭的.</li>
+<li>结合律成立:<br>$$<br>a(bc)&#x3D;(ab)c<br>$$<br>对任意$G$中三个元素都成立.</li>
+<li>有唯一的单位元素$e$，使得对$\forall f\in G$，有$ef&#x3D;fe&#x3D;f$</li>
+<li>对$\forall f\in G$，存在且唯一存在$f^{-1}\in G$，使得$f^{-1}f&#x3D;ff^{-1}&#x3D;e$.</li>
+</ol>
+<h2 id="群的另外一种定义"><a href="#群的另外一种定义" class="headerlink" title="群的另外一种定义"></a>群的另外一种定义</h2><p>一个非空集合$G$对于一个叫乘法的代数运算叫做一个群，如果</p>
+<ol>
+<li>$G$对这个乘法来说是封闭的.</li>
+<li>结合律成立:<br>$$<br>a(bc)&#x3D;(ab)c<br>$$<br>对任意$G$中三个元素都成立.</li>
+<li>$\forall a,b \in G$，方程<br>$$<br>ax&#x3D;b\ 和\ ya&#x3D;b<br>$$<br>在$G$中有解.</li>
+</ol>
+<h2 id="有限群的另外一种定义"><a href="#有限群的另外一种定义" class="headerlink" title="有限群的另外一种定义"></a>有限群的另外一种定义</h2><p>一个有乘法的<strong>有限非空</strong>集合$G$形成一个群，假如</p>
+<ol>
+<li>$G$对这个乘法来说是封闭的.</li>
+<li>结合律成立:<br>$$<br>a(bc)&#x3D;(ab)c<br>$$<br>对任意$G$中三个元素都成立.</li>
+<li>消去律：<br>若$ax&#x3D;ax’$，那么$x&#x3D;x’$,<br>若$ya&#x3D;y’a$，那么$y&#x3D;y’$.</li>
+</ol>
+<p>被满足.</p>
+<h2 id="有限群与无限群"><a href="#有限群与无限群" class="headerlink" title="有限群与无限群"></a>有限群与无限群</h2><p>一个群叫有限群，假如这个群元的个数为一个有限整数，否则这个群叫无限群.一个有限群的元素个数称为这个群的阶.</p>
+<h2 id="交换群（Abel-群）"><a href="#交换群（Abel-群）" class="headerlink" title="交换群（Abel 群）"></a>交换群（Abel 群）</h2><p>一个群叫交换群，假如<br>$$<br>ab&#x3D;ba<br>$$<br>对于$\forall a,b \in G$成立.</p>
+<ul>
+<li>易得，交换群的乘法表关于对角线对称.</li>
+</ul>
+<h2 id="子群"><a href="#子群" class="headerlink" title="子群"></a>子群</h2><p>设$H$是$G$的一个子群，若$H$是$G$的一个子集，且对$G$相同的乘法运算也构成一个群.</p>
+<p>一个不空子集为子群的充要条件为:</p>
+<ol>
+<li>封闭性.</li>
+<li>每个元素有唯一逆元.</li>
+</ol>
+<p>一个不空有限子集为子群的充要条件为:</p>
+<ol>
+<li>封闭性.</li>
+</ol>
+<ul>
+<li>群$G$的非平庸子群称为固有子群.</li>
+</ul>
+<h2 id="S-生成的子群"><a href="#S-生成的子群" class="headerlink" title="$S$生成的子群"></a>$S$生成的子群</h2><p>$S$是$G$中的一个任意非空子集，一个集合$H$恰好包含了$S$的元及其逆元所形成的各种乘积，则$H$形成$G$的一个子群，称为$S$生成的子群，记作$(S)$.</p>
+<h1 id="群的划分"><a href="#群的划分" class="headerlink" title="群的划分"></a>群的划分</h1><h2 id="陪集"><a href="#陪集" class="headerlink" title="陪集"></a>陪集</h2><p>$H$是$G$的子群，由固定的$g\in G$，可得<br>$H$的左陪集$gH&#x3D;\{gh_\alpha|h_\alpha\in H\}$<br>$H$的右陪集$Hg&#x3D;\{h_\alpha g|h_\alpha\in H\}$</p>
+<ul>
+<li>一个子群的左右陪集个数相等.</li>
+</ul>
+<h3 id="指数"><a href="#指数" class="headerlink" title="指数"></a>指数</h3><p>$G$的一个子群$H$的右陪集（或左陪集）的个数称为子群$H$在$G$里的指数，记作$[G:H]$.</p>
+<p>可以证明：<br>$$<br>[G:H]&#x3D;\frac{|G|}{|H|}<br>$$</p>
+<h3 id="陪集定理"><a href="#陪集定理" class="headerlink" title="陪集定理"></a>陪集定理</h3><p>一个子群的左右陪集要么完全相同，要么没有任何公共元素.</p>
+<h3 id="Lagrange-定理"><a href="#Lagrange-定理" class="headerlink" title="Lagrange 定理"></a>Lagrange 定理</h3><p>有限群子群的阶必为群阶的因子，即:<br>$$<br>|G|&#x3D;|H|[G:H]<br>$$</p>
+<h2 id="不变子群"><a href="#不变子群" class="headerlink" title="不变子群"></a>不变子群</h2><p>$G$的一个子群$N$叫做哟个不变子群，假如对于$G$的每一个元$a$来说，都有<br>$$<br>Na&#x3D;aN<br>$$<br>不变子群的一个左（右）陪集叫做这个子群的陪集.</p>
+<h2 id="G-的中心"><a href="#G-的中心" class="headerlink" title="$G$的中心"></a>$G$的中心</h2><p>包含群$G$所有满足以下性质的元$n$的子群叫做$G$的中心:<br>$$<br>na&#x3D;an,\ \forall a \in G<br>$$</p>
+<h2 id="共轭与类"><a href="#共轭与类" class="headerlink" title="共轭与类"></a>共轭与类</h2><h3 id="共轭"><a href="#共轭" class="headerlink" title="共轭"></a>共轭</h3><p>对于$f,h\in G$，如果在$G$中存在一个$g$，使得$f,h$满足$gfg^{-1}&#x3D;h$，则称$f,h$共轭，记作$f\sim h$.</p>
+<h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><p>$G$中所有相互共轭元素形成的集合称为$G$的一个类.</p>
+<ul>
+<li>有限群中每个类中元素的个数都是群阶的因子.</li>
+</ul>
+<h2 id="正规子群（不变子群）"><a href="#正规子群（不变子群）" class="headerlink" title="正规子群（不变子群）"></a>正规子群（不变子群）</h2><p>群$G$的子群$H$有$\forall a\in G, aH&#x3D;Ha$，则子群$H$称为$G$的正规子群，记作$H\triangleleft G$.</p>
+<p>也可说$H$中所有同类元素属于$H$，则称$H$是$G$的正规子群.</p>
+<h2 id="商集和商群"><a href="#商集和商群" class="headerlink" title="商集和商群"></a>商集和商群</h2><h3 id="左右商集的定义"><a href="#左右商集的定义" class="headerlink" title="左右商集的定义"></a>左右商集的定义</h3><p>左商集：$(G&#x2F;H)_l&#x3D;\{aH|a\in G\}$，右商集：$(G&#x2F;H)_r&#x3D;\{Ha|a\in G\}$</p>
+<p>事实上左右商集之间可以建立一一映射.</p>
+<p>由商集的定义可知，正规子群就是左右商集相等的子群.</p>
+<h3 id="集合的乘法"><a href="#集合的乘法" class="headerlink" title="集合的乘法"></a>集合的乘法</h3><p>对于$G$的子集$H,K$，定义<br>$$<br>HK&#x3D;\{hk|h\in H,k\in K\}<br>$$</p>
+<p>可以证明集合乘法满足结合律.</p>
+<h3 id="商群定义"><a href="#商群定义" class="headerlink" title="商群定义"></a>商群定义</h3><p>商集在集合乘法构成的群称为商群，即：<br>$$<br>G&#x2F;H&#x3D;\{aH|a\in G,H\triangleleft G\}<br>$$<br>乘法为:$(aH)(bH)&#x3D;(ab)H$</p>
+<ul>
+<li>商群中的元素是陪集，也就是说商集是“集合的集合”.</li>
+<li>一个群$G$与它的每一个商群$G&#x2F;N$同态.</li>
+</ul>
+<h1 id="群的同构与自同构"><a href="#群的同构与自同构" class="headerlink" title="群的同构与自同构"></a>群的同构与自同构</h1><h2 id="群的同构"><a href="#群的同构" class="headerlink" title="群的同构"></a>群的同构</h2><p>若从群$G$到群$F$上，存在<strong>一一对应的满映射</strong>$\Phi$，对于$\forall a,b\in G$，如果:<br>$$<br>a\longrightarrow \overline{a},b\longrightarrow \overline{b}<br>$$<br>那么有<br>$$<br>a\circ b\longrightarrow \overline a \overline\circ\overline b<br>$$<br>则称群$G$与群$F$同构，记作$G\cong F$。映射$\Phi$称为同构映射。</p>
+<h2 id="自同构映射"><a href="#自同构映射" class="headerlink" title="自同构映射"></a>自同构映射</h2><p>群$G$到自身的自同构映射记为$\nu$，对$\forall g_\alpha \in G$，有$\nu(g_\alpha)\in G$且$\nu(g_\alpha g_\beta)&#x3D;\nu(g_\alpha)\nu(g_\beta)$.</p>
+<h2 id="自同构群"><a href="#自同构群" class="headerlink" title="自同构群"></a>自同构群</h2><p>群$G$的所有自同构映射形成一个群，称为$G$的自同构群，记作$A(G)$.<br>$A(G)$的子群称为 一个自同构群.</p>
+<h2 id="内自同构映射"><a href="#内自同构映射" class="headerlink" title="内自同构映射"></a>内自同构映射</h2><p>一个映射$\phi$称为$G$内自同构映射，当<br>$$<br>\phi:\ x\longrightarrow gxg^{-1}<br>$$<br>对于$\forall x\in G$成立，$g\in G$</p>
+<h2 id="内自同构群"><a href="#内自同构群" class="headerlink" title="内自同构群"></a>内自同构群</h2><p>群$G$的所有内自同构映射形成一个群，称为$G$的内自同构群，记作$I(G)$.</p>
+<ul>
+<li>内自同构映射群为自同构群的不变子群.</li>
+<li>交换群的内自同构群是平凡的.</li>
+</ul>
+<h1 id="群的同态"><a href="#群的同态" class="headerlink" title="群的同态"></a>群的同态</h1><h2 id="同态映射"><a href="#同态映射" class="headerlink" title="同态映射"></a>同态映射</h2><p>一个从$A$到$\overline{A}$的映射$\phi$，对于代数运算$\circ$和$\overline{\circ}$来说 称为$A$到$\overline{A}$的一个同态映射，如果:<br>$$<br>a\longrightarrow \overline{a},b\longrightarrow \overline{b}<br>$$<br>那么<br>$$<br>a\circ b\longrightarrow \overline a \overline\circ\overline b<br>$$</p>
+<h2 id="同态核"><a href="#同态核" class="headerlink" title="同态核"></a>同态核</h2><p>设$G$与$F$同态，那么$G$中与$F$中单位元素对应的所有元素的集合称为同态核.</p>
+<h2 id="同态核定理"><a href="#同态核定理" class="headerlink" title="同态核定理"></a>同态核定理</h2><p>设$G$与$F$同态，则有：</p>
+<ol>
+<li>同态核$H$是$G$的不变子群.</li>
+<li>商群$G&#x2F;F$与$F$同构.</li>
+</ol>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>群论</category>
+      </categories>
+      <tags>
+        <tag>群论</tag>
+        <tag>抽象代数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown常用语法</title>
+    <url>/blog/2022/08/16/Markdown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<p>Markdown是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。</p>
+<span id="more"></span>
+<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>在想要设置为标题的文字前面加#来表示<br>一个#是一级标题，二个#是二级标题，以此类推。支持六级标题。</p>
+<p>注：在#后跟个空格再写文字。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h2><figure class="highlight clean"><table><tr><td class="code"><pre><span class="line"># 这是一级标题</span><br><span class="line">## 这是二级标题</span><br><span class="line">### 这是三级标题</span><br><span class="line">#### 这是四级标题</span><br><span class="line">##### 这是五级标题</span><br><span class="line">###### 这是六级标题</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h1><ul>
+<li>加粗</li>
+</ul>
+<p>要加粗的文字左右分别用两个*号包起来</p>
+<ul>
+<li>斜体</li>
+</ul>
+<p>要倾斜的文字左右分别用一个*号包起来</p>
+<ul>
+<li>斜体加粗</li>
+</ul>
+<p>要倾斜和加粗的文字左右分别用三个*号包起来</p>
+<ul>
+<li>删除线</li>
+</ul>
+<p>要加删除线的文字左右分别用两个~~号包起来</p>
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><pre><code>**这是加粗的文字**
+*这是倾斜的文字*`
+***这是斜体加粗的文字***
+~~这是加删除线的文字~~
+</code></pre>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果:"></a>效果:</h2><p><strong>这是加粗的文字</strong><br><em>这是倾斜的文字</em>&#96;<br><em><strong>这是斜体加粗的文字</strong></em><br><del>这是加删除线的文字</del></p>
+<hr>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>在引用的文字前加&gt;即可。引用也可以嵌套，如加两个&gt;&gt;三个&gt;&gt;&gt;</p>
+<h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例:"></a>示例:</h2><pre><code>&gt;这是引用的内容
+&gt;&gt;这是引用的内容
+&gt;&gt;&gt;这是引用的内容
+</code></pre>
+<h2 id="效果-1"><a href="#效果-1" class="headerlink" title="效果:"></a>效果:</h2><blockquote>
+<p>这是引用的内容</p>
+<blockquote>
+<p>这是引用的内容</p>
+<blockquote>
+<p>这是引用的内容</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<hr>
+<h1 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h1><p>三个或者三个以上的 - 或者 * 都可以。</p>
+<h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例:"></a>示例:</h2><pre><code>---
+***
+</code></pre>
+<h2 id="效果-2"><a href="#效果-2" class="headerlink" title="效果:"></a>效果:</h2><hr>
+<hr>
+<p>效果都一样。</p>
+<hr>
+<h1 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h1><h2 id="示例-3"><a href="#示例-3" class="headerlink" title="示例:"></a>示例:</h2><pre><code>[超链接名](超链接地址 &quot;超链接title&quot;)
+注:title可加可不加。
+例:
+[CSPMRT](https://cspmrt.github.io &quot;CSPMT&quot;)
+</code></pre>
+<h2 id="效果-3"><a href="#效果-3" class="headerlink" title="效果:"></a>效果:</h2><h2 id="CSPMRT"><a href="#CSPMRT" class="headerlink" title="CSPMRT"></a><a href="https://cspmrt.github.io/" title="CSPMT">CSPMRT</a></h2><h1 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h1><p>单行代码：代码之间分别用一个&#96;(反引号)包起来。</p>
+<h2 id="例如"><a href="#例如" class="headerlink" title="例如:"></a>例如:</h2><pre><code>`代码`
+</code></pre>
+<p>多行代码:代码之间分别用三个反引号包起来，且两边的反引号单独占一行。</p>
+<h2 id="示例-4"><a href="#示例-4" class="headerlink" title="示例:"></a>示例:</h2><pre><code>\```(实际使用去除\，这里是防止把反引号解析成代码块标记)
+代码
+\```(实际使用去除\，这里是防止把反引号解析成代码块标记)
+</code></pre>
+<h2 id="效果-4"><a href="#效果-4" class="headerlink" title="效果:"></a>效果:</h2><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a><code>代码</code></h2><h1 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h1><h2 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h2><figure class="highlight gherkin"><table><tr><td class="code"><pre><span class="line">表头|<span class="string">表头</span>|<span class="string">表头</span></span><br><span class="line"><span class="string">---</span>|<span class="string">:--:</span>|<span class="string">---:</span></span><br><span class="line"><span class="string">内容</span>|<span class="string">内容</span>|<span class="string">内容</span>|</span><br><span class="line">内容|<span class="string">内容</span>|<span class="string">内容</span>|</span><br><span class="line">第二行分割表头和内容。</span><br><span class="line">- 有一个就行，为了对齐，多加了几个</span><br><span class="line">文字默认居左</span><br><span class="line">-两边加：表示文字居中</span><br><span class="line">-右边加：表示文字居右</span><br></pre></td></tr></table></figure>
+<h2 id="效果-5"><a href="#效果-5" class="headerlink" title="效果:"></a>效果:</h2><table>
+<thead>
+<tr>
+<th>表头</th>
+<th align="center">表头</th>
+<th align="right">表头</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>内容</td>
+<td align="center">内容</td>
+<td align="right">内容</td>
+</tr>
+<tr>
+<td>内容</td>
+<td align="center">内容</td>
+<td align="right">内容</td>
+</tr>
+</tbody></table>
+<h1 id="空格"><a href="#空格" class="headerlink" title="空格"></a>空格</h1><p>这markdown中，空格使用<code>&amp;nbsp;</code>表示，注意<code>&amp;nbsp;</code>与文字之间有一个空格。</p>
+<h2 id="示例-5"><a href="#示例-5" class="headerlink" title="示例:"></a>示例:</h2><pre><code>&amp;nbsp; 文字。
+</code></pre>
+<h2 id="效果-6"><a href="#效果-6" class="headerlink" title="效果:"></a>效果:</h2><h2 id="amp-nbsp-文字。"><a href="#amp-nbsp-文字。" class="headerlink" title="&amp;nbsp; 文字。"></a>&amp;nbsp; 文字。</h2><h1 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h1><ul>
+<li>注意:代码前后记得一定要加 <code>$$</code> 或 <code>$</code> 才可以显示效果。<code>$$</code>中的公式会单独占据一行，<code>$</code>中的公式不会单独占据一行。</li>
+</ul>
+<h2 id="1-角标-和-开方："><a href="#1-角标-和-开方：" class="headerlink" title="1.角标 和 开方："></a>1.角标 和 开方：</h2><pre><code>$c = \sqrt&#123;a^&#123;2&#125;+b_&#123;xy&#125;^&#123;2&#125; +e^&#123;x&#125;&#125;$
+</code></pre>
+<h3 id="效果-7"><a href="#效果-7" class="headerlink" title="效果:"></a>效果:</h3><p>$c &#x3D; \sqrt{a^{2}+b_{xy}^{2} +e^{x}}$</p>
+<h2 id="2-分数表达："><a href="#2-分数表达：" class="headerlink" title="2.分数表达："></a>2.分数表达：</h2><pre><code>$\frac&#123;x^&#123;2&#125;y^&#123;2&#125;&#125;&#123;x+y&#125;$
+</code></pre>
+<h3 id="效果-8"><a href="#效果-8" class="headerlink" title="效果:"></a>效果:</h3><p>$\frac{x^{2}y^{2}}{x+y}$</p>
+<h2 id="3-求和与联乘："><a href="#3-求和与联乘：" class="headerlink" title="3.求和与联乘："></a>3.求和与联乘：</h2><pre><code>$$\sum_&#123;i=0&#125;^&#123;n&#125;$$
+$$\prod_&#123;i=0&#125;^n \frac&#123;1&#125;&#123;i^2&#125;$$
+</code></pre>
+<h3 id="效果-9"><a href="#效果-9" class="headerlink" title="效果:"></a>效果:</h3><p>$$\sum_{i&#x3D;0}^{n}$$<br>$$\prod_{i&#x3D;0}^n \frac{1}{i^2}$$</p>
+<h2 id="4-积分"><a href="#4-积分" class="headerlink" title="4.积分:"></a>4.积分:</h2><pre><code>$$\int_0^2 x^2 &#123;\rm d&#125;x$$
+$$\iint_0^2 x^2 &#123;\rm d&#125;x$$
+</code></pre>
+<h3 id="效果-10"><a href="#效果-10" class="headerlink" title="效果:"></a>效果:</h3><p>$$\int_0^2 x^2 {\rm d}x$$<br>$$\iint_0^2 x^2 {\rm d}x$$</p>
+<h2 id="5-极限"><a href="#5-极限" class="headerlink" title="5.极限:"></a>5.极限:</h2><pre><code>$$\lim\limits_&#123;n \rightarrow +\infty&#125; \frac&#123;1&#125;&#123;n(n+1)&#125;$$
+</code></pre>
+<h3 id="效果-11"><a href="#效果-11" class="headerlink" title="效果:"></a>效果:</h3><p>$$\lim\limits_{n \rightarrow +\infty} \frac{1}{n(n+1)}$$</p>
+<h2 id="6-矢量"><a href="#6-矢量" class="headerlink" title="6.矢量:"></a>6.矢量:</h2><pre><code>$$\vec&#123; a &#125;$$
+</code></pre>
+<h3 id="效果-12"><a href="#效果-12" class="headerlink" title="效果:"></a>效果:</h3><p>$$\vec{ a }$$</p>
+<h2 id="7-其他"><a href="#7-其他" class="headerlink" title="7.其他:"></a>7.其他:</h2><table>
+<thead>
+<tr>
+<th align="center">效果</th>
+<th align="center">代码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$\pm$</td>
+<td align="center"><code>\pm</code></td>
+</tr>
+<tr>
+<td align="center">$\times$</td>
+<td align="center"><code>\times</code></td>
+</tr>
+<tr>
+<td align="center">$\div$</td>
+<td align="center"><code>\div</code></td>
+</tr>
+<tr>
+<td align="center">$\mid$</td>
+<td align="center"><code>\mid</code></td>
+</tr>
+<tr>
+<td align="center">$\nmid$</td>
+<td align="center"><code>\nmid</code></td>
+</tr>
+<tr>
+<td align="center">$\circ$</td>
+<td align="center"><code>\circ</code></td>
+</tr>
+<tr>
+<td align="center">$\leq$</td>
+<td align="center"><code>\leq</code></td>
+</tr>
+<tr>
+<td align="center">$\geq$</td>
+<td align="center"><code>\geq</code></td>
+</tr>
+<tr>
+<td align="center">$\neq$</td>
+<td align="center"><code>\neq</code></td>
+</tr>
+<tr>
+<td align="center">$\approx$</td>
+<td align="center"><code>\approx</code></td>
+</tr>
+<tr>
+<td align="center">$\equiv$</td>
+<td align="center"><code>\equiv</code></td>
+</tr>
+<tr>
+<td align="center">$\coprod$</td>
+<td align="center"><code>\coprod</code></td>
+</tr>
+<tr>
+<td align="center">$\emptyset$</td>
+<td align="center"><code>\emptyset</code></td>
+</tr>
+<tr>
+<td align="center">$\in$</td>
+<td align="center"><code>\in</code></td>
+</tr>
+<tr>
+<td align="center">$\notin$</td>
+<td align="center"><code>\notin</code></td>
+</tr>
+<tr>
+<td align="center">$\subset$</td>
+<td align="center"><code>\subset</code></td>
+</tr>
+<tr>
+<td align="center">$\supset$</td>
+<td align="center"><code>\supset</code></td>
+</tr>
+<tr>
+<td align="center">$\subseteq$</td>
+<td align="center"><code>\subseteq</code></td>
+</tr>
+<tr>
+<td align="center">$\supseteq$</td>
+<td align="center"><code>\supseteq</code></td>
+</tr>
+<tr>
+<td align="center">$\bigcap$</td>
+<td align="center"><code>\bigcap</code></td>
+</tr>
+<tr>
+<td align="center">$\bigcup$</td>
+<td align="center"><code>\bigcup</code></td>
+</tr>
+<tr>
+<td align="center">$\bigvee$</td>
+<td align="center"><code>\bigvee</code></td>
+</tr>
+<tr>
+<td align="center">$\bigwedge$</td>
+<td align="center"><code>\bigwedge</code></td>
+</tr>
+<tr>
+<td align="center">$\log$</td>
+<td align="center"><code>\log</code></td>
+</tr>
+<tr>
+<td align="center">$\lg$</td>
+<td align="center"><code>\lg</code></td>
+</tr>
+<tr>
+<td align="center">$\ln$</td>
+<td align="center"><code>\ln</code></td>
+</tr>
+<tr>
+<td align="center">$\bot$</td>
+<td align="center"><code>\bot</code></td>
+</tr>
+<tr>
+<td align="center">$\angle$</td>
+<td align="center"><code>\angle</code></td>
+</tr>
+<tr>
+<td align="center">$30^\circ$</td>
+<td align="center"><code>30^\circ</code></td>
+</tr>
+<tr>
+<td align="center">$\prime$</td>
+<td align="center"><code>\prime</code></td>
+</tr>
+<tr>
+<td align="center">$\iiint$</td>
+<td align="center"><code>\iiint</code></td>
+</tr>
+<tr>
+<td align="center">$\oint$</td>
+<td align="center"><code>\oint</code></td>
+</tr>
+<tr>
+<td align="center">$\infty$</td>
+<td align="center"><code>\infty</code></td>
+</tr>
+<tr>
+<td align="center">$\nabla$</td>
+<td align="center"><code>\nabla</code></td>
+</tr>
+<tr>
+<td align="center">$\because$</td>
+<td align="center"><code>\because</code></td>
+</tr>
+<tr>
+<td align="center">$\therefore$</td>
+<td align="center"><code>\therefore</code></td>
+</tr>
+<tr>
+<td align="center">$\forall$</td>
+<td align="center"><code>\forall</code></td>
+</tr>
+<tr>
+<td align="center">$\exists$</td>
+<td align="center"><code>\exists</code></td>
+</tr>
+<tr>
+<td align="center">$\not&#x3D;$</td>
+<td align="center"><code>\not=</code></td>
+</tr>
+<tr>
+<td align="center">$\not&gt;$</td>
+<td align="center"><code>\not&gt;</code></td>
+</tr>
+<tr>
+<td align="center">$\not\subset$</td>
+<td align="center"><code>\not\subset</code></td>
+</tr>
+<tr>
+<td align="center">$\hat{y}$</td>
+<td align="center"><code>\hat&#123;y&#125;</code></td>
+</tr>
+<tr>
+<td align="center">$\check{y}$</td>
+<td align="center"><code>\check&#123;y&#125;</code></td>
+</tr>
+<tr>
+<td align="center">$\breve{y}$</td>
+<td align="center"><code>\breve&#123;y&#125;</code></td>
+</tr>
+<tr>
+<td align="center">$\overline{a+b+c+d}$</td>
+<td align="center"><code>\overline&#123;a+b+c+d&#125;</code></td>
+</tr>
+<tr>
+<td align="center">$\underline{a+b+c+d}$</td>
+<td align="center"><code>\underline&#123;a+b+c+d&#125;</code></td>
+</tr>
+<tr>
+<td align="center">$\overbrace{a+\underbrace{b+c}_{1.0}+d}^{2.0}$</td>
+<td align="center"><code>\overbrace&#123;a+\underbrace&#123;b+c&#125;_&#123;1.0&#125;+d&#125;^&#123;2.0&#125;</code></td>
+</tr>
+<tr>
+<td align="center">$\uparrow$</td>
+<td align="center"><code>\uparrow</code></td>
+</tr>
+<tr>
+<td align="center">$\downarrow$</td>
+<td align="center"><code>\downarrow</code></td>
+</tr>
+<tr>
+<td align="center">$\Uparrow$</td>
+<td align="center"><code>\Uparrow</code></td>
+</tr>
+<tr>
+<td align="center">$\Downarrow$</td>
+<td align="center"><code>\Downarrow</code></td>
+</tr>
+<tr>
+<td align="center">$\rightarrow$</td>
+<td align="center"><code>\rightarrow</code></td>
+</tr>
+<tr>
+<td align="center">$\leftarrow$</td>
+<td align="center"><code>\leftarrow</code></td>
+</tr>
+<tr>
+<td align="center">$\Rightarrow$</td>
+<td align="center"><code>\Rightarrow</code></td>
+</tr>
+<tr>
+<td align="center">$\Leftarrow$</td>
+<td align="center"><code>\Leftarrow</code></td>
+</tr>
+<tr>
+<td align="center">$\alpha$</td>
+<td align="center"><code>\alpha</code></td>
+</tr>
+<tr>
+<td align="center">$\beta$</td>
+<td align="center"><code>\beta</code></td>
+</tr>
+<tr>
+<td align="center">$\gamma$</td>
+<td align="center"><code>\gamma</code></td>
+</tr>
+<tr>
+<td align="center">$\Gamma$</td>
+<td align="center"><code>\Gamma</code></td>
+</tr>
+<tr>
+<td align="center">$\delta$</td>
+<td align="center"><code>\delta</code></td>
+</tr>
+<tr>
+<td align="center">$\Delta$</td>
+<td align="center"><code>\Delta</code></td>
+</tr>
+<tr>
+<td align="center">$\epsilon$</td>
+<td align="center"><code>\epsilon</code></td>
+</tr>
+<tr>
+<td align="center">$\varepsilon$</td>
+<td align="center"><code>\varepsilon</code></td>
+</tr>
+<tr>
+<td align="center">$\zeta$</td>
+<td align="center"><code>\zeta</code></td>
+</tr>
+<tr>
+<td align="center">$\eta$</td>
+<td align="center"><code>\eta</code></td>
+</tr>
+<tr>
+<td align="center">$\theta$</td>
+<td align="center"><code>\theta</code></td>
+</tr>
+<tr>
+<td align="center">$\Theta$</td>
+<td align="center"><code>\Theta</code></td>
+</tr>
+<tr>
+<td align="center">$\vartheta$</td>
+<td align="center"><code>\vartheta</code></td>
+</tr>
+<tr>
+<td align="center">$\iota$</td>
+<td align="center"><code>\iota</code></td>
+</tr>
+<tr>
+<td align="center">$\kappa$</td>
+<td align="center"><code>\kappa</code></td>
+</tr>
+<tr>
+<td align="center">$\lambda$</td>
+<td align="center"><code>\lambda</code></td>
+</tr>
+<tr>
+<td align="center">$\Lambda$</td>
+<td align="center"><code>\Lambda</code></td>
+</tr>
+<tr>
+<td align="center">$\mu$</td>
+<td align="center"><code>\mu</code></td>
+</tr>
+<tr>
+<td align="center">$\nu$</td>
+<td align="center"><code>\nu</code></td>
+</tr>
+<tr>
+<td align="center">$\xi$</td>
+<td align="center"><code>\xi</code></td>
+</tr>
+<tr>
+<td align="center">$\Xi$</td>
+<td align="center"><code>\Xi</code></td>
+</tr>
+<tr>
+<td align="center">$\pi$</td>
+<td align="center"><code>\pi</code></td>
+</tr>
+<tr>
+<td align="center">$\Pi$</td>
+<td align="center"><code>\Pi</code></td>
+</tr>
+<tr>
+<td align="center">$\varpi$</td>
+<td align="center"><code>\varpi</code></td>
+</tr>
+<tr>
+<td align="center">$\rho$</td>
+<td align="center"><code>\rho</code></td>
+</tr>
+<tr>
+<td align="center">$\varrho$</td>
+<td align="center"><code>\varrho</code></td>
+</tr>
+<tr>
+<td align="center">$\sigma$</td>
+<td align="center"><code>\sigma</code></td>
+</tr>
+<tr>
+<td align="center">$\Sigma$</td>
+<td align="center"><code>\Sigma</code></td>
+</tr>
+<tr>
+<td align="center">$\varsigma$</td>
+<td align="center"><code>\varsigma</code></td>
+</tr>
+<tr>
+<td align="center">$\tau$</td>
+<td align="center"><code>\tau</code></td>
+</tr>
+<tr>
+<td align="center">$\upsilon$</td>
+<td align="center"><code>\upsilon</code></td>
+</tr>
+<tr>
+<td align="center">$\Upsilon$</td>
+<td align="center"><code>\Upsilon</code></td>
+</tr>
+<tr>
+<td align="center">$\phi$</td>
+<td align="center"><code>\phi</code></td>
+</tr>
+<tr>
+<td align="center">$\Phi$</td>
+<td align="center"><code>\Phi</code></td>
+</tr>
+<tr>
+<td align="center">$\varphi$</td>
+<td align="center"><code>\varphi</code></td>
+</tr>
+<tr>
+<td align="center">$\chi$</td>
+<td align="center"><code>\chi</code></td>
+</tr>
+<tr>
+<td align="center">$\psi$</td>
+<td align="center"><code>\psi</code></td>
+</tr>
+<tr>
+<td align="center">$\Psi$</td>
+<td align="center"><code>\Psi</code></td>
+</tr>
+<tr>
+<td align="center">$\omega$</td>
+<td align="center"><code>\omega</code></td>
+</tr>
+<tr>
+<td align="center">$\Omega$</td>
+<td align="center"><code>\Omega</code></td>
+</tr>
+<tr>
+<td align="center">$\smile$</td>
+<td align="center"><code>\smile</code></td>
+</tr>
+<tr>
+<td align="center">$\frown$</td>
+<td align="center"><code>\frown</code></td>
+</tr>
+<tr>
+<td align="center">$\asymp$</td>
+<td align="center"><code>\asymp</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="便签"><a href="#便签" class="headerlink" title="便签"></a>便签</h1><figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name">note</span> %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">文字</span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">endnote</span> %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">note</span> primary %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">primary</span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">endnote</span> %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">note</span> secondary %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">secondary</span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">endnote</span> %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">note</span> success %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">success</span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">endnote</span> %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">note</span> danger %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">danger</span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">endnote</span> %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">note</span> warning %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">warning</span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">endnote</span> %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">note</span> info %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">info</span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">endnote</span> %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">note</span> light %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">light</span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">endnote</span> %&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="效果："><a href="#效果：" class="headerlink" title="效果："></a>效果：</h2><div class="note "><p>文字</p>
+</div>
+
+<div class="note primary"><p>primary</p>
+</div>
+
+<details class="note "><summary><p>secondary</p>
+</summary>
+<p>secondary</p>
+
+</details>
+
+<div class="note success"><p>success</p>
+</div>
+
+<div class="note danger"><p>danger</p>
+</div>
+
+<div class="note warning"><p>warning</p>
+</div>
+
+<div class="note info"><p>info</p>
+</div>
+
+<details class="note "><summary><p>light</p>
+</summary>
+<p>light</p>
+
+</details>
+
+<h1 id="行内标签"><a href="#行内标签" class="headerlink" title="行内标签"></a>行内标签</h1><figure class="highlight mel"><table><tr><td class="code"><pre><span class="line">&#123;% label @ipsum %&#125; &#123;% label primary @primary %&#125; &#123;% label <span class="keyword">default</span> @default %&#125; &#123;% label info @info %&#125; &#123;% label success @success %&#125; &#123;% label <span class="keyword">warning</span> @warning %&#125; &#123;% label danger @danger %&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="效果：-1"><a href="#效果：-1" class="headerlink" title="效果："></a>效果：</h2><mark class="label ">ipsum</mark> <mark class="label primary">primary</mark> <mark class="label default">default</mark> <mark class="label info">info</mark> <mark class="label success">success</mark> <mark class="label warning">warning</mark> <mark class="label danger">danger</mark>
+<hr>
+<h1 id="居中引用"><a href="#居中引用" class="headerlink" title="居中引用"></a>居中引用</h1><figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name">centerquote</span> %&#125;</span><span class="language-xml">Something</span><span class="template-tag">&#123;% <span class="name">endcenterquote</span> %&#125;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml"></span><span class="template-tag">&#123;% <span class="name">cq</span> %&#125;</span><span class="language-xml">Something</span><span class="template-tag">&#123;% <span class="name">endcq</span> %&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="效果：-2"><a href="#效果：-2" class="headerlink" title="效果："></a>效果：</h2><blockquote class="blockquote-center">
+<p>Something</p>
+
+</blockquote>
+<blockquote class="blockquote-center">
+<p>Something</p>
+
+</blockquote>
+
+<hr>
+<h1 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h1><p>见: <a href="https://theme-next.js.org/docs/tag-plugins/mermaid">https://theme-next.js.org/docs/tag-plugins/mermaid</a></p>
+<h2 id="效果-13"><a href="#效果-13" class="headerlink" title="效果"></a>效果</h2><pre class="mermaid">
+graph TD
+A[Hard] --&gt;|Text| B(Round)
+B --&gt; C{Decision}
+C --&gt;|One| D[Result 1]
+C --&gt;|Two| E[Result 2]
+</pre>
+<hr>
+<pre class="mermaid">
+sequenceDiagram
+Alice-&gt;&gt;John: Hello John, how are you?
+loop Healthcheck
+    John-&gt;&gt;John: Fight against hypochondria
+end
+Note right of John: Rational thoughts!
+John--&gt;&gt;Alice: Great!
+John-&gt;&gt;Bob: How about you?
+Bob--&gt;&gt;John: Jolly good!
+</pre>
+<hr>
+<pre><code class="highlight mermaid">classDiagram
+Class01 &lt;|-- AveryLongClass : Cool
+Class03 *-- Class04
+Class05 o-- Class06
+Class07 .. Class08
+Class09 --&gt; C2 : Where am i?
+Class09 --* C3
+Class09 --|&gt; Class07
+Class07 : equals()
+Class07 : Object[] elementData
+Class01 : size()
+Class01 : int chimp
+Class01 : int gorilla
+Class08 &lt;--&gt; C2: Cool label</code></pre>
+<hr>
+<pre class="mermaid">
+gantt
+dateFormat  YYYY-MM-DD
+section Section
+Completed :done,    des1, 2014-01-06,2014-01-08
+Active        :active,  des2, 2014-01-07, 3d
+Parallel 1   :         des3, after des1, 1d
+Parallel 2   :         des4, after des1, 1d
+Parallel 3   :         des5, after des3, 1d
+Parallel 4   :         des6, after des4, 1d
+</pre>
+<hr>
+<pre class="mermaid">
+pie
+&quot;Dogs&quot; : 386
+&quot;Cats&quot; : 85
+&quot;Rats&quot; : 15
+</pre>
+<hr>
+<pre class="mermaid">
+journey
+title My working day
+section Go to work
+  Make tea: 5: Me
+  Go upstairs: 3: Me
+  Do work: 1: Me, Cat
+section Go home
+  Go downstairs: 5: Me
+  Sit down: 3: Me
+</pre>
+<hr>
+<h1 id="图片组"><a href="#图片组" class="headerlink" title="图片组"></a>图片组</h1><h2 id="见：https-theme-next-js-org-docs-tag-plugins-group-pictures-html"><a href="#见：https-theme-next-js-org-docs-tag-plugins-group-pictures-html" class="headerlink" title="见：https://theme-next.js.org/docs/tag-plugins/group-pictures.html"></a>见：<a href="https://theme-next.js.org/docs/tag-plugins/group-pictures.html">https://theme-next.js.org/docs/tag-plugins/group-pictures.html</a></h2><h1 id="Tabs"><a href="#Tabs" class="headerlink" title="Tabs"></a>Tabs</h1><p>见：<a href="https://theme-next.js.org/docs/tag-plugins/tabs.html">https://theme-next.js.org/docs/tag-plugins/tabs.html</a></p>
+]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自由空间电磁波传输损耗经验公式</title>
+    <url>/blog/2022/08/18/%E8%87%AA%E7%94%B1%E7%A9%BA%E9%97%B4%E7%94%B5%E7%A3%81%E6%B3%A2%E4%BC%A0%E8%BE%93%E6%8D%9F%E8%80%97%E7%BB%8F%E9%AA%8C%E5%85%AC%E5%BC%8F/</url>
+    <content><![CDATA[<p>$$<br>Loss &#x3D; 32.44+20\lg D+20\lg F<br>$$</p>
+<span id="more"></span>
+<ul>
+<li>Loss 指传输损耗，单位为dB</li>
+<li>D 指传输距离，单位为 Km</li>
+<li>F 指载波频率，单位为 MHz</li>
+<li>自由空间指天线周围为无限大真空，不会被反射、散射和吸收</li>
+</ul>
+]]></content>
+      <categories>
+        <category>物理学</category>
+        <category>电动力学</category>
+      </categories>
+      <tags>
+        <tag>电动力学</tag>
+        <tag>通信工程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>群的基本概念(2)</title>
+    <url>/blog/2022/08/20/%E7%BE%A4%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5(2)/</url>
+    <content><![CDATA[<p>这一节主要给出 变换群、置换群、循环群 的相关基本概念，便于查阅。</p>
+<span id="more"></span>
+<h1 id="变换群和置换群"><a href="#变换群和置换群" class="headerlink" title="变换群和置换群"></a>变换群和置换群</h1><h2 id="变换和置换"><a href="#变换和置换" class="headerlink" title="变换和置换"></a>变换和置换</h2><p>设$X$为一个非空集合，从$X$到$X$的双射叫做$X$上的变换；当$X$为有限集合时，则称为置换.</p>
+<h2 id="变换群和置换群-1"><a href="#变换群和置换群-1" class="headerlink" title="变换群和置换群"></a>变换群和置换群</h2><p>定义$X$上的两个变换（或置换）$f,g$的乘积$fg$为先对$X$进行置换$g$，再对$X$进行置换$f$，在此乘法意义下，全体$X$上的变换构成一个群，叫$X$上的完全对称群，记作$S_X$；对于$S_X$的子群，我们称为$X$的一个变换群；若$X$为$n$个元素的集合，则称为$n$阶置换群，记作$S_n$.</p>
+<h2 id="Cayley（凯莱）定理"><a href="#Cayley（凯莱）定理" class="headerlink" title="Cayley（凯莱）定理"></a>Cayley（凯莱）定理</h2><p>群$G$同构于$S_G$的一个子群.</p>
+<ul>
+<li>可以证明，每一个有限群都与一个置换群同构.；</li>
+</ul>
+<h2 id="等价性"><a href="#等价性" class="headerlink" title="等价性"></a>等价性</h2><p>设$G$为$X$上的变换群，若对$x,y\in X$，$\exists g\in G$，使得$g(x)\in y$，则称$x$与$y$等价，记作$x\sim y$.</p>
+<h2 id="轨道"><a href="#轨道" class="headerlink" title="轨道"></a>轨道</h2><p>设$G$为$X$上的变换群，$x$为$X$中元素，由$X$中所有与$x$等价的元素的集合，称为$x$的$G$轨道.</p>
+<h2 id="不变子集"><a href="#不变子集" class="headerlink" title="不变子集"></a>不变子集</h2><p>设$G$为$X$上的变换群，若有$X$上的子集$Y$，对应$G$中任意元素$g$，它得到的结果还属于$Y$，则称$Y$为群$G$在$X$上的不变子集.</p>
+<h2 id="迷向子群"><a href="#迷向子群" class="headerlink" title="迷向子群"></a>迷向子群</h2><p>设$G$是$X$上的变换群，$x$是$X$中一点，$G$的子群$G^x$保持$x$不变，也就是$G^x&#x3D;\{h|h\in G且hx&#x3D;x\}$，则称$G^x$是$G$对$x$的迷向子群.</p>
+<h1 id="循环群"><a href="#循环群" class="headerlink" title="循环群"></a>循环群</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>若一个群$G$的每一个元都是$G$的某一个固定元$a$的乘方，我们就把$G$叫做循环群.</p>
+<p>也可以说$G$是由$a$生成，并用符号<br>$$<br>G&#x3D;(a)<br>$$<br>表示.$a$叫做$G$的一个生成元.</p>
+<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><p>假设$G&#x3D;(a)$，$G$的构造完全由$a$的阶数决定：<br>若$a$为无限阶，$G$与整数加群同构；<br>若$a$的阶为有限整数$n$，$G$与模$n$剩余类加群同构.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>群论</category>
+      </categories>
+      <tags>
+        <tag>群论</tag>
+        <tag>抽象代数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 LUKS 设备上执行 TRIM</title>
+    <url>/blog/2022/08/21/%E5%9C%A8-LUKS-%E8%AE%BE%E5%A4%87%E4%B8%8A%E6%89%A7%E8%A1%8C-TRIM/</url>
+    <content><![CDATA[<p>执行此操作，至少需要 cryptsetup 1.4 和 kernel 3.1 ，或更新版本。</p>
+<div class="note danger"><p>在加密分区上执行<code>TRIM</code>可能会削弱安全性</p>
+</div>
+<span id="more"></span>
+
+<div class="note info"><p>在本例中，被加密的分区为<code>/dev/sda1</code></p>
+</div>
+
+<h1 id="解密分区"><a href="#解密分区" class="headerlink" title="解密分区"></a>解密分区</h1><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">sudo cryptsetup open --allow-discards <span class="regexp">/dev/</span>sda1 data</span><br></pre></td></tr></table></figure>
+
+<h1 id="挂载分区"><a href="#挂载分区" class="headerlink" title="挂载分区"></a>挂载分区</h1><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">sudo mount <span class="regexp">/dev/m</span>apper<span class="regexp">/data /m</span>nt</span><br></pre></td></tr></table></figure>
+
+<h1 id="执行TRIM"><a href="#执行TRIM" class="headerlink" title="执行TRIM"></a>执行<code>TRIM</code></h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo fstrim -v /mnt</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>密码学</category>
+      </categories>
+      <tags>
+        <tag>密码学</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python 虚拟环境</title>
+    <url>/blog/2022/08/30/Python3-%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<p>主要介绍<code>virtualenv</code>这一个创建<code>Python</code>虚拟环境的工具。</p>
+<span id="more"></span>
+
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> virtualenv</span><br></pre></td></tr></table></figure>
+<p>或者可以使用<code>apt</code>：</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">apt <span class="keyword">install</span> python3-virtualenv</span><br></pre></td></tr></table></figure>
+<h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><h2 id="创建一个虚拟环境"><a href="#创建一个虚拟环境" class="headerlink" title="创建一个虚拟环境:"></a>创建一个虚拟环境:</h2><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">virtualenv</span> 包保存路径名</span><br></pre></td></tr></table></figure>
+<h2 id="激活环境"><a href="#激活环境" class="headerlink" title="激活环境"></a>激活环境</h2><figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line"><span class="keyword">source</span> 包保存路径名<span class="regexp">/bin/</span>activate</span><br></pre></td></tr></table></figure>
+
+<p>现在就可以在这个虚拟环境中直接使用<code>pip</code>等安装<code>Python</code>包，当前虚拟环境名也会显示在命令行前。</p>
+<h2 id="停用虚拟环境"><a href="#停用虚拟环境" class="headerlink" title="停用虚拟环境"></a>停用虚拟环境</h2><figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">deactivate</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="更多用法参考"><a href="#更多用法参考" class="headerlink" title="更多用法参考"></a>更多用法参考</h1><blockquote>
+<p><a href="https://pythonguidecn.readthedocs.io/zh/latest/dev/virtualenvs.html">https://pythonguidecn.readthedocs.io/zh/latest/dev/virtualenvs.html</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>计算机</tag>
+        <tag>Python</tag>
+        <tag>虚拟环境</tag>
+      </tags>
+  </entry>
+</search>
