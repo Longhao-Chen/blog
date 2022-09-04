@@ -23,29 +23,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"longhao-chen.github.io","root":"/blog/","images":"/blog/images","scheme":"Muse","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/config.js"></script>
 
-    <meta name="description" content="我是 Longhao.Chen，爱好物理学和计算机科学，CSPMRT 成员之一。 我的 GnuPG 密钥ID为：9045 CDDC 2CD2 86D6">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="https://longhao-chen.github.io/blog/about/index.html">
+    <meta name="description" content="公式及实现见：https:&#x2F;&#x2F;wiki.openstreetmap.org&#x2F;wiki&#x2F;Slippy_map_tilenames">
+<meta property="og:type" content="article">
+<meta property="og:title" content="瓦片坐标与经维度换算">
+<meta property="og:url" content="https://longhao-chen.github.io/blog/2022/09/04/%E7%93%A6%E7%89%87%E5%9D%90%E6%A0%87%E4%B8%8E%E7%BB%8F%E7%BB%B4%E5%BA%A6%E6%8D%A2%E7%AE%97/index.html">
 <meta property="og:site_name" content="Longhao.Chen&#39;s blog">
-<meta property="og:description" content="我是 Longhao.Chen，爱好物理学和计算机科学，CSPMRT 成员之一。 我的 GnuPG 密钥ID为：9045 CDDC 2CD2 86D6">
+<meta property="og:description" content="公式及实现见：https:&#x2F;&#x2F;wiki.openstreetmap.org&#x2F;wiki&#x2F;Slippy_map_tilenames">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-08-16T07:55:54.000Z">
-<meta property="article:modified_time" content="2022-08-21T16:15:01.891Z">
+<meta property="article:published_time" content="2022-09-04T13:13:26.000Z">
+<meta property="article:modified_time" content="2022-09-04T13:20:48.301Z">
 <meta property="article:author" content="Longhao.Chen">
-<meta property="article:tag" content="Longhao.Chen, CSPMRT">
+<meta property="article:tag" content="地图">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://longhao-chen.github.io/blog/about/">
+<link rel="canonical" href="https://longhao-chen.github.io/blog/2022/09/04/%E7%93%A6%E7%89%87%E5%9D%90%E6%A0%87%E4%B8%8E%E7%BB%8F%E7%BB%B4%E5%BA%A6%E6%8D%A2%E7%AE%97/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"https://longhao-chen.github.io/blog/about/index.html","path":"about/index.html","title":"关于"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://longhao-chen.github.io/blog/2022/09/04/%E7%93%A6%E7%89%87%E5%9D%90%E6%A0%87%E4%B8%8E%E7%BB%8F%E7%BB%B4%E5%BA%A6%E6%8D%A2%E7%AE%97/","path":"2022/09/04/瓦片坐标与经维度换算/","title":"瓦片坐标与经维度换算"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>关于 | Longhao.Chen's blog
-</title>
+<title>瓦片坐标与经维度换算 | Longhao.Chen's blog</title>
   
 
   <script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/analytics/baidu-analytics.js"></script>
@@ -221,38 +220,151 @@
 </noscript>
 
 
-    <div class="main-inner page posts-expand">
+    <div class="main-inner post posts-expand">
 
 
-    
-    
-    
-    <div class="post-block" lang="zh-CN"><header class="post-header">
+  
 
-<h1 class="post-title" itemprop="name headline">关于
-</h1>
 
-<div class="post-meta-container">
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://longhao-chen.github.io/blog/2022/09/04/%E7%93%A6%E7%89%87%E5%9D%90%E6%A0%87%E4%B8%8E%E7%BB%8F%E7%BB%B4%E5%BA%A6%E6%8D%A2%E7%AE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/clh-avatar.gif">
+      <meta itemprop="name" content="Longhao.Chen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Longhao.Chen's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="瓦片坐标与经维度换算 | Longhao.Chen's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          瓦片坐标与经维度换算
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-09-04 21:13:26 / 修改时间：21:20:48" itemprop="dateCreated datePublished" datetime="2022-09-04T21:13:26+08:00">2022-09-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>174</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
 </div>
 
-</header>
+        </div>
+      </header>
 
-      
-      
-      <div class="post-body">
-          <p>我是 Longhao.Chen，爱好物理学和计算机科学，<a target="_blank" rel="noopener" href="https://cspmrt.github.io/">CSPMRT</a> 成员之一。</p>
-<p>我的 GnuPG 密钥ID为：<a target="_blank" rel="noopener" href="https://keys.openpgp.org/vks/v1/by-fingerprint/973E4323A871E6C9EC5B50AD9045CDDC2CD286D6"><code>9045 CDDC 2CD2 86D6</code></a></p>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>公式及实现见：<br><a target="_blank" rel="noopener" href="https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames">https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames</a></p>
+<span id="more"></span>
 
-      </div>
-      
-      
-      
+<p>更多参考：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.biaodianfu.com/coordinates-tile.html">https://www.biaodianfu.com/coordinates-tile.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/antony1776/article/details/106077244">https://blog.csdn.net/antony1776/article/details/106077244</a></p>
+</blockquote>
+
     </div>
 
     
     
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/%E5%9C%B0%E5%9B%BE/" rel="tag"># 地图</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2022/08/30/Python3-%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" rel="prev" title="Python 虚拟环境">
+                  <i class="fa fa-chevron-left"></i> Python 虚拟环境
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
 
 
+
+
+
+
+    
+  
+  <div class="comments">
+    <script src="https://giscus.app/client.js"
+        data-repo="longhao-chen/blog" 
+        data-repo-id="R_kgDOH07ucQ" 
+        data-category="Announcements"
+        data-category-id="DIC_kwDOH07ucc4CQ2pD"
+        data-mapping="pathname" 
+        data-reactions-enabled="1" 
+        data-emit-metadata="1" 
+        data-theme="dark"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        data-input-position="top"
+        data-loading="lazy"
+        async>
+    </script>
+  </div>
+  
+  
 </div>
   </main>
 
