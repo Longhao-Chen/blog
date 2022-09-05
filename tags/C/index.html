@@ -23,29 +23,24 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"longhao-chen.github.io","root":"/blog/","images":"/blog/images","scheme":"Muse","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/config.js"></script>
 
-    <meta name="description" content="LUKS （Linux Unified Key Setup）是 Linux 硬盘加密的标准。我们可以使用这个来加密 Linux 下的分区。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="LUKS设备使用说明">
-<meta property="og:url" content="https://longhao-chen.github.io/blog/2022/08/16/LUKS%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Longhao.Chen&#39;s blog">
+<meta property="og:url" content="https://longhao-chen.github.io/blog/tags/C/index.html">
 <meta property="og:site_name" content="Longhao.Chen&#39;s blog">
-<meta property="og:description" content="LUKS （Linux Unified Key Setup）是 Linux 硬盘加密的标准。我们可以使用这个来加密 Linux 下的分区。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-08-16T11:35:51.000Z">
-<meta property="article:modified_time" content="2022-08-16T11:35:51.000Z">
 <meta property="article:author" content="Longhao.Chen">
-<meta property="article:tag" content="密码学">
-<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Longhao.Chen, CSPMRT">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://longhao-chen.github.io/blog/2022/08/16/LUKS%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">
+<link rel="canonical" href="https://longhao-chen.github.io/blog/tags/C/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://longhao-chen.github.io/blog/2022/08/16/LUKS%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/","path":"2022/08/16/LUKS设备使用说明/","title":"LUKS设备使用说明"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"tags/C/index.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>LUKS设备使用说明 | Longhao.Chen's blog</title>
+<title>标签: C++ | Longhao.Chen's blog</title>
   
 
   <script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/analytics/baidu-analytics.js"></script>
@@ -136,7 +131,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -149,7 +144,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AALUKS%E8%AE%BE%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">创建一个LUKS设备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%82%E8%BD%BD"><span class="nav-number">2.</span> <span class="nav-text">挂载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%B8%E8%BD%BD"><span class="nav-number">3.</span> <span class="nav-text">卸载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%8F%A3%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">修改口令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E4%BF%A1%E6%81%AF%E5%92%8C%E5%8F%A3%E4%BB%A4%E6%B7%BB%E5%8A%A0%E7%A7%BB%E9%99%A4%E6%93%8D%E4%BD%9C"><span class="nav-number">5.</span> <span class="nav-text">查看信息和口令添加移除操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%87%E4%BB%BD%E5%92%8C%E6%81%A2%E5%A4%8DluksHeader"><span class="nav-number">6.</span> <span class="nav-text">备份和恢复luksHeader</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%A6%E9%99%A4%E5%AF%86%E9%92%A5%E5%A4%B4"><span class="nav-number">7.</span> <span class="nav-text">擦除密钥头</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -222,169 +216,51 @@
 </noscript>
 
 
-    <div class="main-inner post posts-expand">
+    <div class="main-inner tag posts-collapse">
 
 
   
-
-
-<div class="post-block">
   
   
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://longhao-chen.github.io/blog/2022/08/16/LUKS%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/clh-avatar.gif">
-      <meta itemprop="name" content="Longhao.Chen">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Longhao.Chen's blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="LUKS设备使用说明 | Longhao.Chen's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          LUKS设备使用说明
+  <div class="post-block">
+    <div class="post-content">
+      <div class="collection-title">
+        <h1 class="collection-header">C++
+          <small>标签</small>
         </h1>
+      </div>
 
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-08-16 19:35:51" itemprop="dateCreated datePublished" datetime="2022-08-16T19:35:51+08:00">2022-08-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E5%AF%86%E7%A0%81%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">密码学</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="busuanzi_value_page_pv"></span>
-    </span>
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>654</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-        <p>LUKS （Linux Unified Key Setup）是 Linux 硬盘加密的标准。我们可以使用这个来加密 Linux 下的分区。</p>
-<span id="more"></span>
-<h1 id="创建一个LUKS设备"><a href="#创建一个LUKS设备" class="headerlink" title="创建一个LUKS设备"></a>创建一个LUKS设备</h1><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">cryptsetup</span> -y luksFormat 设备名</span><br></pre></td></tr></table></figure>
-<p><strong>注意：yes确认需要大写</strong></p>
-<h1 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h1><p>假设设备名为<code>/dev/sdb1</code></p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cryptsetup open <span class="regexp">/dev/</span>sdb1 data</span><br></pre></td></tr></table></figure>
-<p>现在我们就可以使用解密后的块设备 <code>/dev/mapper/data</code></p>
-<p>注意： 如果显示创建回环设备失败，可以尝试 <code>modprobe loop</code></p>
-<h1 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h1><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">sudo</span> cryptsetup close <span class="class"><span class="keyword">data</span></span></span><br></pre></td></tr></table></figure>
-
-<h1 id="修改口令"><a href="#修改口令" class="headerlink" title="修改口令"></a>修改口令</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cryptsetup luksChangeKey <span class="tag">&lt;<span class="name">device</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="查看信息和口令添加移除操作"><a href="#查看信息和口令添加移除操作" class="headerlink" title="查看信息和口令添加移除操作"></a>查看信息和口令添加移除操作</h1><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo cryptsetup luksDump <span class="regexp">/dev/</span>sdb1</span><br><span class="line">sudo cryptsetup luksAddKey <span class="regexp">/dev/</span>sdb1</span><br><span class="line">sudo cryptsetup luksRemoveKey <span class="regexp">/dev/</span>sdb1</span><br><span class="line">sudo cryptsetup status data</span><br></pre></td></tr></table></figure>
-
-<h1 id="备份和恢复luksHeader"><a href="#备份和恢复luksHeader" class="headerlink" title="备份和恢复luksHeader"></a>备份和恢复luksHeader</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo cryptsetup luksHeaderBackup <span class="symbol">&lt;device&gt;</span> --header-backup-<span class="keyword">file</span> <span class="symbol">&lt;file&gt;</span></span><br><span class="line">sudo cryptsetup luksHeaderRestore <span class="symbol">&lt;device&gt;</span> --header-backup-<span class="keyword">file</span> <span class="symbol">&lt;file&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="擦除密钥头"><a href="#擦除密钥头" class="headerlink" title="擦除密钥头"></a>擦除密钥头</h1><p>这会造成设备无法访问</p>
-<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cryptsetup <span class="built_in">erase</span> &lt;device&gt;</span><br></pre></td></tr></table></figure>
-
+      
+    <div class="collection-year">
+      <span class="collection-header">2022</span>
     </div>
 
-    
-    
-    
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2022-09-05T19:50:19+08:00"
+              content="2022-09-05">
+          09-05
+        </time>
+      </div>
 
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/blog/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag"># 密码学</a>
-              <a href="/blog/tags/Linux/" rel="tag"># Linux</a>
-          </div>
+      <div class="post-title">
+          <a class="post-title-link" href="/blog/2022/09/05/C-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" itemprop="url">
+            <span itemprop="name">C++ 智能指针</span>
+          </a>
+      </div>
 
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/blog/2022/08/16/Markdown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/" rel="prev" title="Markdown常用语法">
-                  <i class="fa fa-chevron-left"></i> Markdown常用语法
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/blog/2022/08/16/GnuPG-%E7%94%9F%E6%88%90ECC%E5%AF%86%E9%92%A5/" rel="next" title="GnuPG 生成ECC密钥">
-                  GnuPG 生成ECC密钥 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
+      
+    </header>
   </article>
-</div>
 
-
-
-
-
-
-    
-  
-  <div class="comments">
-    <script src="https://giscus.app/client.js"
-        data-repo="longhao-chen/blog" 
-        data-repo-id="R_kgDOH07ucQ" 
-        data-category="Announcements"
-        data-category-id="DIC_kwDOH07ucc4CQ2pD"
-        data-mapping="pathname" 
-        data-reactions-enabled="1" 
-        data-emit-metadata="1" 
-        data-theme="dark"
-        data-lang="zh-CN"
-        crossorigin="anonymous"
-        data-input-position="top"
-        data-loading="lazy"
-        async>
-    </script>
+    </div>
   </div>
   
   
+  
+
 </div>
   </main>
 

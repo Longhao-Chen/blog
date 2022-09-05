@@ -1020,4 +1020,47 @@ section Go home
         <tag>地图</tag>
       </tags>
   </entry>
+  <entry>
+    <title>C++ 智能指针</title>
+    <url>/blog/2022/09/05/C-%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</url>
+    <content><![CDATA[<p>本文主要介绍 C++11 引入的三个智能指针： <code>std::unique_ptr&lt;T&gt;</code>、<code>std::shared_ptr&lt;T&gt;</code> 和 <code>std::weak_ptr&lt;T&gt;</code></p>
+<span id="more"></span>
+<div class="note "><p>不要忘记添加头文件 <code>memory</code></p>
+</div>
+<h1 id="std-unique-ptr-lt-T-gt"><a href="#std-unique-ptr-lt-T-gt" class="headerlink" title="std::unique_ptr&lt;T&gt;"></a><code>std::unique_ptr&lt;T&gt;</code></h1><p>这个指针会在离开指针作用域时自动释放资源。</p>
+<p>例子：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    std::unique_ptr&lt;<span class="type">int</span>&gt; p = std::<span class="built_in">make_unique</span>&lt;<span class="type">int</span>&gt;(<span class="number">10</span>);</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//也可以写成</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function">std::unique_ptr&lt;<span class="type">int</span>&gt; <span class="title">p</span><span class="params">(<span class="keyword">new</span> <span class="type">int</span>(<span class="number">10</span>))</span></span>;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight d"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> *p = <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">10</span>);</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="keyword">delete</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：同一时刻只能有一个<code>unique_ptr</code>指针指向给定资源，即这个指针是<code>move-only</code>的，这主要是为了防止一个资源被释放后，再通过另外一个指针访问。<br>例如：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    std::unique_ptr&lt;<span class="type">int</span>&gt; p = std::<span class="built_in">make_unique</span>&lt;<span class="type">int</span>&gt;(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这样是不被允许的</span></span><br><span class="line">    std::unique_ptr&lt;<span class="type">int</span>&gt; p1 = p2;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//但这样是可以的，而且经过这一步操作后，p就成了空指针</span></span><br><span class="line">    std::unique_ptr&lt;<span class="type">int</span>&gt; p = std::<span class="built_in">move</span>(p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="std-shared-ptr-lt-T-gt"><a href="#std-shared-ptr-lt-T-gt" class="headerlink" title="std::shared_ptr&lt;T&gt;"></a><code>std::shared_ptr&lt;T&gt;</code></h1><p>这个指针是对指向的资源引用进行计数，当引用计数为0时，则释放资源。正因如此，这个指针的性能开销要略大于 裸指针 和 <code>unique_ptr</code>。<br>例子：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    std::shared_ptr&lt;<span class="type">int</span>&gt; p = std::<span class="built_in">make_shared</span>&lt;<span class="type">int</span>&gt;(<span class="number">10</span>);</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//也可以写成</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function">std::shared_ptr&lt;<span class="type">int</span>&gt; <span class="title">p</span><span class="params">(<span class="keyword">new</span> <span class="type">int</span>(<span class="number">10</span>))</span></span>;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以通过方法<code>use_count()</code>查看引用计数：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    std::shared_ptr&lt;<span class="type">int</span>&gt; p = std::<span class="built_in">make_shared</span>&lt;<span class="type">int</span>&gt;(<span class="number">10</span>);</span><br><span class="line">    std::cout &lt;&lt; p.<span class="built_in">use_count</span>(); <span class="comment">//输出1</span></span><br><span class="line">    &#123;</span><br><span class="line">        std::shared_ptr&lt;<span class="type">int</span>&gt; p1 = p;</span><br><span class="line">        std::cout &lt;&lt; p.<span class="built_in">use_count</span>(); <span class="comment">//输出2</span></span><br><span class="line">    &#125;</span><br><span class="line">    std::cout &lt;&lt; p.<span class="built_in">use_count</span>(); <span class="comment">//输出1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//此时引用计数为0,资源被释放</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="std-weak-ptr-lt-T-gt"><a href="#std-weak-ptr-lt-T-gt" class="headerlink" title="std::weak_ptr&lt;T&gt;"></a><code>std::weak_ptr&lt;T&gt;</code></h1><p>这个指针是为了配合<code>std::shared_ptr</code>而引入的一种智能指针，不具有普通指针的行为。<code>std::weak_ptr</code>可以指向<code>std::shared_ptr</code>指向的资源而不改变引用计数。当指向的<code>std::shared_ptr</code>所指向的资源被释放时，<code>std:::weak_ptr</code>指针会自动变成空指针。<br>当要使用<code>std::weak_ptr</code>指针时，则需要将其提升为<code>std::shared_ptr</code>指针。</p>
+<p>例子：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="function">std::shared_ptr&lt;<span class="type">int</span>&gt; <span class="title">p</span><span class="params">(<span class="keyword">new</span> <span class="type">int</span>(<span class="number">10</span>))</span></span>;</span><br><span class="line">    std::weak_ptr&lt;<span class="type">int</span>&gt; p1 = p;</span><br><span class="line">    std::cout &lt;&lt; p.<span class="built_in">use_count</span>(); <span class="comment">//输出1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断p1指向的p是否释放，如果释放 p1.lock() 会返回空指针</span></span><br><span class="line">    <span class="keyword">if</span>(p1.<span class="built_in">expired</span>())&#123;</span><br><span class="line">        std::shared_ptr&lt;<span class="type">int</span>&gt; p2 = p1.<span class="built_in">lock</span>();</span><br><span class="line">        std::cout &lt;&lt; p.<span class="built_in">use_count</span>(); <span class="comment">//输出2</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><ul>
+<li><code>std::unique_ptr&lt;T&gt;</code>：用于资源被独占的情况下</li>
+<li><code>std::shared_ptr&lt;T&gt;</code>：用于资源被共享的情况下</li>
+<li><code>std::weak_ptr&lt;T&gt;</code>：解决循环引用等问题</li>
+</ul>
+<hr>
+<p>参考资料：</p>
+<blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/150555165">https://zhuanlan.zhihu.com/p/150555165</a><br><a href="https://www.cnblogs.com/wxquare/p/4759020.html">https://www.cnblogs.com/wxquare/p/4759020.html</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
 </search>
