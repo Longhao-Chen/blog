@@ -1063,4 +1063,27 @@ section Go home
         <tag>C++</tag>
       </tags>
   </entry>
+  <entry>
+    <title>C++标准库 iomanip 介绍</title>
+    <url>/blog/2022/09/06/C-%E6%A0%87%E5%87%86%E5%BA%93-iomanip-%E4%BB%8B%E7%BB%8D/</url>
+    <content><![CDATA[<p><code>iomanip</code>是<code>C++</code>下控制<code>I/O</code>流的一个标准库，利用它，可以实现格式化输出。</p>
+<span id="more"></span>
+<div class="note "><p>不要忘记添加头文件 <code>iomanip</code></p>
+</div>
+
+<h1 id="不同进制输出"><a href="#不同进制输出" class="headerlink" title="不同进制输出"></a>不同进制输出</h1><figure class="highlight sqf"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    int a = <span class="number">123</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 八进制输出</span></span><br><span class="line">    cout &lt;&lt; showbase &lt;&lt; setbase(<span class="number">8</span>) &lt;&lt; a &lt;&lt; <span class="literal">endl</span>;</span><br><span class="line">    cout &lt;&lt; oct &lt;&lt; a &lt;&lt; <span class="literal">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 十进制输出</span></span><br><span class="line">    cout &lt;&lt; showbase &lt;&lt; setbase(<span class="number">10</span>) &lt;&lt; a &lt;&lt; <span class="literal">endl</span>;</span><br><span class="line">    cout &lt;&lt; dec &lt;&lt; a &lt;&lt; <span class="literal">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 十六进制输出</span></span><br><span class="line">    cout &lt;&lt; showbase &lt;&lt; setbase(<span class="number">16</span>) &lt;&lt; a &lt;&lt; <span class="literal">endl</span>;</span><br><span class="line">    cout &lt;&lt; hex &lt;&lt; a &lt;&lt; <span class="literal">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="保留小数"><a href="#保留小数" class="headerlink" title="保留小数"></a>保留小数</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">double</span> a = <span class="number">1.2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 保留 3 位小数，小数不足补0</span></span><br><span class="line">    cout &lt;&lt; <span class="built_in">setprecision</span>(<span class="number">3</span>) &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="输出前导0"><a href="#输出前导0" class="headerlink" title="输出前导0"></a>输出前导0</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">123</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输出 0123</span></span><br><span class="line">    cout &lt;&lt; <span class="built_in">setfill</span>(<span class="string">&#x27;0&#x27;</span>) &lt;&lt; <span class="built_in">setw</span>(<span class="number">4</span>) &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="note "><p>如果不加<code>setfill</code>，默认使用空格补位。</p>
+</div>
+]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
 </search>
