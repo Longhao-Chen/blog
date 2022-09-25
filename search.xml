@@ -1172,4 +1172,78 @@ section Go home
         <tag>C++</tag>
       </tags>
   </entry>
+  <entry>
+    <title>JLink 命令行常用命令</title>
+    <url>/blog/2022/09/25/JLink-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p>主要介绍<code>JLinkExe</code>和<code>JLinkGDBServer</code></p>
+<span id="more"></span>
+<h1 id="JLinkExe"><a href="#JLinkExe" class="headerlink" title="JLinkExe"></a><code>JLinkExe</code></h1><h2 id="进入JLinkExe命令行"><a href="#进入JLinkExe命令行" class="headerlink" title="进入JLinkExe命令行"></a>进入<code>JLinkExe</code>命令行</h2><figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">JLinkExe</span></span><br></pre></td></tr></table></figure>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><table>
+<thead>
+<tr>
+<th align="center">用途</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">连接目标板</td>
+<td><code>usb</code></td>
+</tr>
+<tr>
+<td align="center">重启目标板</td>
+<td><code>r</code></td>
+</tr>
+<tr>
+<td align="center">停止正在运行的程序</td>
+<td><code>h</code></td>
+</tr>
+<tr>
+<td align="center">开始执行程序</td>
+<td><code>g</code></td>
+</tr>
+<tr>
+<td align="center">打印寄存器</td>
+<td><code>regs</code></td>
+</tr>
+<tr>
+<td align="center">读寄存器</td>
+<td><code>RReg &lt;RegName&gt;</code></td>
+</tr>
+<tr>
+<td align="center">写寄存器</td>
+<td><code>wreg &lt;RegName&gt; &lt;Value&gt;</code></td>
+</tr>
+<tr>
+<td align="center">查看CPU停机原因</td>
+<td><code>MoE</code></td>
+</tr>
+<tr>
+<td align="center">设置PC寄存器</td>
+<td><code>SetPC &lt;Addr&gt; </code></td>
+</tr>
+<tr>
+<td align="center">烧录文件到指定地址</td>
+<td><code>LoadFile &lt;FileName&gt; &lt;Addr&gt;</code></td>
+</tr>
+</tbody></table>
+<h1 id="JLinkGDBServer"><a href="#JLinkGDBServer" class="headerlink" title="JLinkGDBServer"></a><code>JLinkGDBServer</code></h1><h2 id="启动方法"><a href="#启动方法" class="headerlink" title="启动方法"></a>启动方法</h2><p>以<code>STM32F103RC</code>为例</p>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line"><span class="keyword">JLinkGDBServer </span>-if <span class="keyword">SWD </span>-device STM<span class="symbol">32F</span>103RC</span><br></pre></td></tr></table></figure>
+
+<h2 id="GDB连接方法"><a href="#GDB连接方法" class="headerlink" title="GDB连接方法"></a><code>GDB</code>连接方法</h2><p>先进入<code>gdb</code>命令行</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">gdb-multiarch</span></span><br></pre></td></tr></table></figure>
+
+<p>加载<code>elf</code>文件</p>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">file</span> &lt;elf文件名&gt;</span><br></pre></td></tr></table></figure>
+
+<p>连接<code>JLinkGDBServer</code></p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">target</span> remote <span class="number">127.0.0.1:2331</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>单片机</category>
+      </categories>
+      <tags>
+        <tag>STM32</tag>
+      </tags>
+  </entry>
 </search>
