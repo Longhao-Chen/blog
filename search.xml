@@ -1300,4 +1300,37 @@ E ---&gt;|否| C(入一位)
         <tag>数值计算</tag>
       </tags>
   </entry>
+  <entry>
+    <title>MECHREVO WUJIE16 Pro无法休眠和无法识别HDMI口的解决方法</title>
+    <url>/blog/2022/10/07/MECHREVO-WUJIE16-Pro%E6%97%A0%E6%B3%95%E4%BC%91%E7%9C%A0%E5%92%8C%E6%97%A0%E6%B3%95%E8%AF%86%E5%88%ABHDMI%E5%8F%A3%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>机械革命 无界16 Pro在 Linux 无法S3休眠和无法识别HDMI口问题的解决方法。</p>
+<span id="more"></span>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>S3 休眠后无法唤醒：唤醒时屏幕背光亮（每隔几秒亮一次）但屏幕不亮，CPU风扇高速运行。</p>
+<p>HDMI口无法识别：自带的HDMI口无输出，在<code>xrandr</code>中无法看到<code>HDMI-1</code>。</p>
+<h1 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h1><p>因为 VBT (Video BIOS Tables) 提供了错误的信息，导致<code>i915</code>驱动程序无法正确初始化，从而导致上述问题。</p>
+<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>最根本的解决方法是修复<code>VBT</code>中的错误信息，但这可能不太现实。</p>
+<p>但我们可以通过修改<code>i915</code>驱动程序来解决此问题。</p>
+<div class="note "><p>一下内容以<code>Linux Kernel 6.0</code>为例</p>
+</div>
+
+<ol>
+<li>按照如下所示修改<a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/i915/display/intel_bios.c?h=v6.0"><code>drivers/gpu/drm/i915/display/intel_bios.c</code></a>中的<a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/i915/display/intel_bios.c?h=v6.0#n2656"><code>parse_ddi_port</code></a>函数：<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">--- a<span class="regexp">/drivers/g</span>pu<span class="regexp">/drm/i</span>915<span class="regexp">/display/i</span>ntel_bios.c</span><br><span class="line">+++ b<span class="regexp">/drivers/g</span>pu<span class="regexp">/drm/i</span>915<span class="regexp">/display/i</span>ntel_bios.c</span><br><span class="line">@@ -<span class="number">2671</span>,<span class="number">10</span> +<span class="number">2671</span>,<span class="number">15</span> @@ static void parse_ddi_port(struct intel_bios_encoder_data *devdata)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (i915-&gt;vbt.ports[port]) &#123;</span><br><span class="line">+               <span class="regexp">//</span> drm_dbg_kms(&amp;i915-&gt;drm,</span><br><span class="line">+               <span class="regexp">//</span>          <span class="string">&quot;More than one child device for port %c in VBT, using the first.\n&quot;</span>,</span><br><span class="line">+               <span class="regexp">//</span>          port_name(port));</span><br><span class="line">+               <span class="regexp">//</span> return;</span><br><span class="line">                drm_dbg_kms(&amp;i915-&gt;drm,</span><br><span class="line">-                           <span class="string">&quot;More than one child device for port %c in VBT, using the first.\n&quot;</span>,</span><br><span class="line">-                           port_name(port));</span><br><span class="line">-               return;</span><br><span class="line">+                           <span class="string">&quot;i915 stucks with an nonexisting eDP, &quot;</span></span><br><span class="line">+                           <span class="string">&quot;thus although we have more than one child device for port %c in VBT, &quot;</span></span><br><span class="line">+                           <span class="string">&quot;using the latter one and ignore the first.\n&quot;</span>,</span><br><span class="line">+                           port_name(port));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        sanitize_device_type(devdata, port);</span><br></pre></td></tr></table></figure>
+其实上述修改就是去掉<a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/i915/display/intel_bios.c?h=v6.0#n2677">这一个</a><code>return</code></li>
+<li>重新编译内核并安装</li>
+</ol>
+<div class="note "><p><a href="https://gitlab.freedesktop.org/drm/intel/-/issues/6743">这一个</a>问题也值得注意，可以顺带一起修复。</p>
+</div>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><blockquote>
+<p><a href="https://gitlab.freedesktop.org/drm/intel/-/issues/5531">https://gitlab.freedesktop.org/drm/intel/-/issues/5531</a><br><a href="https://gitlab.freedesktop.org/drm/intel/-/issues/6743">https://gitlab.freedesktop.org/drm/intel/-/issues/6743</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Bug</tag>
+      </tags>
+  </entry>
 </search>
