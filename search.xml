@@ -1333,4 +1333,46 @@ E ---&gt;|否| C(入一位)
         <tag>Bug</tag>
       </tags>
   </entry>
+  <entry>
+    <title>ACPI 表的提取和更新方法</title>
+    <url>/blog/2022/10/10/ACPI-%E8%A1%A8%E7%9A%84%E6%8F%90%E5%8F%96%E5%92%8C%E6%9B%B4%E6%96%B0%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>主要介绍<code>DSDT</code>和<code>SSDT</code>的提取、反编译、修改、编译和更新的方法。</p>
+<span id="more"></span>
+<h1 id="提取"><a href="#提取" class="headerlink" title="提取"></a>提取</h1><figure class="highlight css"><table><tr><td class="code"><pre><span class="line">acpidump &gt; acpidump</span><br><span class="line">acpixtract -<span class="selector-tag">a</span> acpidump</span><br></pre></td></tr></table></figure>
+<p>这一步会在当前目录下生成许多<code>dat</code>文件。</p>
+<h1 id="反编译"><a href="#反编译" class="headerlink" title="反编译"></a>反编译</h1><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">iasl</span> -d <span class="regexp">*.dat</span></span><br></pre></td></tr></table></figure>
+<p>这一步会把上一步生成的<code>dat</code>文件反编译为<code>dsl</code>文件。</p>
+<h1 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h1><p>现在就可以按照需求修改<code>dsl</code>文件。</p>
+<p>注意：修改完后，需要增加版本号。</p>
+<p>例如：<br>修改前：</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">DefinitionBlock</span> (<span class="string">&quot;DSDT.aml&quot;</span>, <span class="string">&quot;DSDT&quot;</span>, <span class="number">2</span>, <span class="string">&quot;INTEL &quot;</span>, <span class="string">&quot;TEMPLATE&quot;</span>, <span class="number">0</span>x00000000)</span><br></pre></td></tr></table></figure>
+<p>修改后应为：</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">DefinitionBlock</span> (<span class="string">&quot;DSDT.aml&quot;</span>, <span class="string">&quot;DSDT&quot;</span>, <span class="number">2</span>, <span class="string">&quot;INTEL &quot;</span>, <span class="string">&quot;TEMPLATE&quot;</span>, <span class="number">0</span>x00000001)</span><br></pre></td></tr></table></figure>
+
+<h1 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h1><p>例如我们修改了<code>dsdt.dsl</code>文件，可以这样编译：</p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">iasl</span> -sa dsdt.dsl</span><br></pre></td></tr></table></figure>
+<p>此时应该会生成<code>dsdt.aml</code></p>
+<p>如果修改过其他文件，也可以按照上述方法进行编译，生成相应的<code>aml</code>文件。</p>
+<h1 id="应用修改"><a href="#应用修改" class="headerlink" title="应用修改"></a>应用修改</h1><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">mkdir -p kernel<span class="regexp">/firmware/</span>acpi</span><br></pre></td></tr></table></figure>
+<p>然后复制相应的<code>aml</code>文件到上面新建的目录。</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line"><span class="keyword">find</span> kernel | cpio -H newc --create &gt; initrd</span><br><span class="line">cat <span class="regexp">/boot/i</span>nitrd &gt;&gt; initrd</span><br></pre></td></tr></table></figure>
+
+<p>再用当前目录下生成的<code>initrd</code>替换系统原来的<code>initrd</code>，重启系统。</p>
+<p>如果能在<code>demsg</code>中发现类似</p>
+<figure class="highlight gams"><table><tr><td class="code"><pre><span class="line">ACPI: DSDT ACPI <span class="keyword">table</span> found <span class="comment">in initrd</span></span><br></pre></td></tr></table></figure>
+<p>的信息，则说明替换成功。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><blockquote>
+<p><a href="https://www.kernel.org/doc/html/latest/admin-guide/acpi/initrd_table_override.html">https://www.kernel.org/doc/html/latest/admin-guide/acpi/initrd_table_override.html</a><br><a href="https://wiki.archlinux.org/title/DSDT_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">https://wiki.archlinux.org/title/DSDT_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>固件</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>ACPI</tag>
+        <tag>BIOS</tag>
+      </tags>
+  </entry>
 </search>
