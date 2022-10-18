@@ -23,24 +23,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"longhao-chen.github.io","root":"/blog/","images":"/blog/images","scheme":"Muse","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Longhao.Chen&#39;s blog">
-<meta property="og:url" content="https://longhao-chen.github.io/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E5%9B%BA%E4%BB%B6/index.html">
+    <meta name="description" content="zRAM能够将内存模拟为块设备，向其写入数据时，会将数据进行压缩并储存到RAM中。因为压缩和解压缩的速度通常比磁盘IO要好，故我们可以使用zRAM来替代磁盘的Swap分区，从而提高在内存不足时系统的性能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用zRAM作为Swap分区">
+<meta property="og:url" content="https://longhao-chen.github.io/blog/2022/10/18/%E4%BD%BF%E7%94%A8zram%E4%BD%9C%E4%B8%BAswap/index.html">
 <meta property="og:site_name" content="Longhao.Chen&#39;s blog">
+<meta property="og:description" content="zRAM能够将内存模拟为块设备，向其写入数据时，会将数据进行压缩并储存到RAM中。因为压缩和解压缩的速度通常比磁盘IO要好，故我们可以使用zRAM来替代磁盘的Swap分区，从而提高在内存不足时系统的性能。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-18T11:48:46.000Z">
+<meta property="article:modified_time" content="2022-10-18T11:48:46.000Z">
 <meta property="article:author" content="Longhao.Chen">
-<meta property="article:tag" content="Longhao.Chen, CSPMRT">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://longhao-chen.github.io/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E5%9B%BA%E4%BB%B6/">
+<link rel="canonical" href="https://longhao-chen.github.io/blog/2022/10/18/%E4%BD%BF%E7%94%A8zram%E4%BD%9C%E4%B8%BAswap/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"categories/计算机/固件/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://longhao-chen.github.io/blog/2022/10/18/%E4%BD%BF%E7%94%A8zram%E4%BD%9C%E4%B8%BAswap/","path":"2022/10/18/使用zram作为swap/","title":"使用zRAM作为Swap分区"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>分类: 固件 | Longhao.Chen's blog</title>
+<title>使用zRAM作为Swap分区 | Longhao.Chen's blog</title>
   
 
   <script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/analytics/baidu-analytics.js"></script>
@@ -131,7 +135,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -144,6 +148,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%AF%E7%94%A8zRAM"><span class="nav-number">1.</span> <span class="nav-text">启用zRAM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEzRAM"><span class="nav-number">2.</span> <span class="nav-text">配置zRAM</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -216,51 +221,155 @@
 </noscript>
 
 
-    <div class="main-inner category posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">固件
-          <small>分类</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://longhao-chen.github.io/blog/2022/10/18/%E4%BD%BF%E7%94%A8zram%E4%BD%9C%E4%B8%BAswap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/clh-avatar.gif">
+      <meta itemprop="name" content="Longhao.Chen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Longhao.Chen's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="使用zRAM作为Swap分区 | Longhao.Chen's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用zRAM作为Swap分区
         </h1>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-18 19:48:46" itemprop="dateCreated datePublished" datetime="2022-10-18T19:48:46+08:00">2022-10-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>351</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><code>zRAM</code>能够将内存模拟为块设备，向其写入数据时，会将数据进行压缩并储存到<code>RAM</code>中。因为压缩和解压缩的速度通常比磁盘<code>IO</code>要好，故我们可以使用<code>zRAM</code>来替代磁盘的<code>Swap</code>分区，从而提高在内存不足时系统的性能。</p>
+<span id="more"></span>
+<h1 id="启用zRAM"><a href="#启用zRAM" class="headerlink" title="启用zRAM"></a>启用<code>zRAM</code></h1><p>对于<code>Debian</code>系的发行版，启用<code>zRAM</code>只需要安装<code>zram-tools</code>并启动相应服务：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt <span class="keyword">install</span> zram-tools</span><br><span class="line">sudo systemctl restart zramswap.service</span><br></pre></td></tr></table></figure>
+
+<h1 id="配置zRAM"><a href="#配置zRAM" class="headerlink" title="配置zRAM"></a>配置<code>zRAM</code></h1><p>默认情况下，<code>zRAM</code>使用的压缩算法是<code>lz4</code>，如果想使用其他算法或修改<code>zRAM</code>的大小，我们可以修改配置文件<code>/etc/default/zramswap</code>。</p>
+<p>目前，我的建议是：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ALGO</span><span class="operator">=</span>zstd</span><br><span class="line"><span class="attribute">PERCENT</span><span class="operator">=</span><span class="number">70</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://wiki.debian.org/ZRam">https://wiki.debian.org/ZRam</a></p>
+</blockquote>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-10-10T19:43:12+08:00"
-              content="2022-10-10">
-          10-10
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/blog/2022/10/10/ACPI-%E8%A1%A8%E7%9A%84%E6%8F%90%E5%8F%96%E5%92%8C%E6%9B%B4%E6%96%B0%E6%96%B9%E6%B3%95/" itemprop="url">
-            <span itemprop="name">ACPI 表的提取和更新方法</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/Linux/" rel="tag"># Linux</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2022/10/10/ACPI-%E8%A1%A8%E7%9A%84%E6%8F%90%E5%8F%96%E5%92%8C%E6%9B%B4%E6%96%B0%E6%96%B9%E6%B3%95/" rel="prev" title="ACPI 表的提取和更新方法">
+                  <i class="fa fa-chevron-left"></i> ACPI 表的提取和更新方法
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-    </div>
+
+
+
+
+
+    
+  
+  <div class="comments">
+    <script src="https://giscus.app/client.js"
+        data-repo="longhao-chen/blog" 
+        data-repo-id="R_kgDOH07ucQ" 
+        data-category="Announcements"
+        data-category-id="DIC_kwDOH07ucc4CQ2pD"
+        data-mapping="pathname" 
+        data-reactions-enabled="1" 
+        data-emit-metadata="1" 
+        data-theme="dark"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        data-input-position="top"
+        data-loading="lazy"
+        async>
+    </script>
   </div>
   
   
-  
-
 </div>
   </main>
 

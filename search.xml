@@ -1375,4 +1375,27 @@ E ---&gt;|否| C(入一位)
         <tag>BIOS</tag>
       </tags>
   </entry>
+  <entry>
+    <title>使用zRAM作为Swap分区</title>
+    <url>/blog/2022/10/18/%E4%BD%BF%E7%94%A8zram%E4%BD%9C%E4%B8%BAswap/</url>
+    <content><![CDATA[<p><code>zRAM</code>能够将内存模拟为块设备，向其写入数据时，会将数据进行压缩并储存到<code>RAM</code>中。因为压缩和解压缩的速度通常比磁盘<code>IO</code>要好，故我们可以使用<code>zRAM</code>来替代磁盘的<code>Swap</code>分区，从而提高在内存不足时系统的性能。</p>
+<span id="more"></span>
+<h1 id="启用zRAM"><a href="#启用zRAM" class="headerlink" title="启用zRAM"></a>启用<code>zRAM</code></h1><p>对于<code>Debian</code>系的发行版，启用<code>zRAM</code>只需要安装<code>zram-tools</code>并启动相应服务：</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">sudo apt <span class="keyword">install</span> zram-tools</span><br><span class="line">sudo systemctl restart zramswap.service</span><br></pre></td></tr></table></figure>
+
+<h1 id="配置zRAM"><a href="#配置zRAM" class="headerlink" title="配置zRAM"></a>配置<code>zRAM</code></h1><p>默认情况下，<code>zRAM</code>使用的压缩算法是<code>lz4</code>，如果想使用其他算法或修改<code>zRAM</code>的大小，我们可以修改配置文件<code>/etc/default/zramswap</code>。</p>
+<p>目前，我的建议是：</p>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">ALGO</span><span class="operator">=</span>zstd</span><br><span class="line"><span class="attribute">PERCENT</span><span class="operator">=</span><span class="number">70</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://wiki.debian.org/ZRam">https://wiki.debian.org/ZRam</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
 </search>
