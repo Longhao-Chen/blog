@@ -23,24 +23,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"longhao-chen.github.io","root":"/blog/","images":"/blog/images","scheme":"Muse","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Longhao.Chen&#39;s blog">
-<meta property="og:url" content="https://longhao-chen.github.io/blog/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/index.html">
+    <meta name="description" content="脚本运行这个脚本，就可以在指定的 LUKS 设备上执行TRIM操作 123456#! &#x2F;bin&#x2F;bashsudo cryptsetup --allow-discards --persistent open $1 luks-trim-devsudo mount &#x2F;dev&#x2F;mapper&#x2F;luks-trim-dev &#x2F;mntsudo fstrim -v &#x2F;mntsudo umount &#x2F;mntsudo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 LUKS 设备上执行 TRIM">
+<meta property="og:url" content="https://longhao-chen.github.io/blog/2022/10/29/%E5%9C%A8-LUKS-%E8%AE%BE%E5%A4%87%E4%B8%8A%E6%89%A7%E8%A1%8C-TRIM/index.html">
 <meta property="og:site_name" content="Longhao.Chen&#39;s blog">
+<meta property="og:description" content="脚本运行这个脚本，就可以在指定的 LUKS 设备上执行TRIM操作 123456#! &#x2F;bin&#x2F;bashsudo cryptsetup --allow-discards --persistent open $1 luks-trim-devsudo mount &#x2F;dev&#x2F;mapper&#x2F;luks-trim-dev &#x2F;mntsudo fstrim -v &#x2F;mntsudo umount &#x2F;mntsudo">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-29T09:23:42.000Z">
+<meta property="article:modified_time" content="2022-10-29T09:23:42.000Z">
 <meta property="article:author" content="Longhao.Chen">
-<meta property="article:tag" content="Longhao.Chen, CSPMRT">
+<meta property="article:tag" content="密码学">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://longhao-chen.github.io/blog/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">
+<link rel="canonical" href="https://longhao-chen.github.io/blog/2022/10/29/%E5%9C%A8-LUKS-%E8%AE%BE%E5%A4%87%E4%B8%8A%E6%89%A7%E8%A1%8C-TRIM/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"tags/计算机/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://longhao-chen.github.io/blog/2022/10/29/%E5%9C%A8-LUKS-%E8%AE%BE%E5%A4%87%E4%B8%8A%E6%89%A7%E8%A1%8C-TRIM/","path":"2022/10/29/在-LUKS-设备上执行-TRIM/","title":"在 LUKS 设备上执行 TRIM"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>标签: 计算机 | Longhao.Chen's blog</title>
+<title>在 LUKS 设备上执行 TRIM | Longhao.Chen's blog</title>
   
 
   <script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/analytics/baidu-analytics.js"></script>
@@ -131,7 +136,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -144,6 +149,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC"><span class="nav-number">1.</span> <span class="nav-text">脚本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">2.</span> <span class="nav-text">参考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -158,7 +164,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/blog/archives/">
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -169,7 +175,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/blog/tags/">
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -216,51 +222,158 @@
 </noscript>
 
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">计算机
-          <small>标签</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://longhao-chen.github.io/blog/2022/10/29/%E5%9C%A8-LUKS-%E8%AE%BE%E5%A4%87%E4%B8%8A%E6%89%A7%E8%A1%8C-TRIM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/clh-avatar.gif">
+      <meta itemprop="name" content="Longhao.Chen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Longhao.Chen's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="在 LUKS 设备上执行 TRIM | Longhao.Chen's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在 LUKS 设备上执行 TRIM
         </h1>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-29 17:23:42" itemprop="dateCreated datePublished" datetime="2022-10-29T17:23:42+08:00">2022-10-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E5%AF%86%E7%A0%81%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">密码学</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>309</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <span id="more"></span>
+<h1 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h1><p>运行这个脚本，就可以在指定的 <code>LUKS</code> 设备上执行<code>TRIM</code>操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line">sudo cryptsetup --allow-discards --persistent open <span class="variable">$1</span> luks-trim-dev</span><br><span class="line">sudo mount /dev/mapper/luks-trim-dev /mnt</span><br><span class="line">sudo fstrim -v /mnt</span><br><span class="line">sudo umount /mnt</span><br><span class="line">sudo cryptsetup close luks-trim-dev</span><br></pre></td></tr></table></figure>
+
+<p>用法：<br>假设脚本名为 <code>trimluks</code>，运行此脚本的命令</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.<span class="regexp">/trimluks /</span>dev/设备名</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Dm-crypt/Specialties">https://wiki.archlinux.org/title/Dm-crypt/Specialties</a></p>
+</blockquote>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-08-30T22:16:23+08:00"
-              content="2022-08-30">
-          08-30
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/blog/2022/08/30/Python3-%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" itemprop="url">
-            <span itemprop="name">Python 虚拟环境</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag"># 密码学</a>
+              <a href="/blog/tags/Linux/" rel="tag"># Linux</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2022/10/21/FFmpeg%E4%BD%BF%E7%94%A8GPU%E7%BC%96%E8%A7%A3%E7%A0%81/" rel="prev" title="FFmpeg使用GPU编解码">
+                  <i class="fa fa-chevron-left"></i> FFmpeg使用GPU编解码
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-    </div>
+
+
+
+
+
+    
+  
+  <div class="comments">
+    <script src="https://giscus.app/client.js"
+        data-repo="longhao-chen/blog" 
+        data-repo-id="R_kgDOH07ucQ" 
+        data-category="Announcements"
+        data-category-id="DIC_kwDOH07ucc4CQ2pD"
+        data-mapping="pathname" 
+        data-reactions-enabled="1" 
+        data-emit-metadata="1" 
+        data-theme="dark"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        data-input-position="top"
+        data-loading="lazy"
+        async>
+    </script>
   </div>
   
   
-  
-
 </div>
   </main>
 
@@ -281,13 +394,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">27k</span>
+    <span title="站点总字数">28k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:09</span>
+    <span title="站点阅读时长">1:12</span>
   </span>
 </div>
 <div class="busuanzi-count">

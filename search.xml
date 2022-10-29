@@ -998,7 +998,6 @@ section Go home
         <category>计算机</category>
       </categories>
       <tags>
-        <tag>计算机</tag>
         <tag>Python</tag>
         <tag>虚拟环境</tag>
       </tags>
@@ -1452,8 +1451,8 @@ E ---&gt;|否| C(入一位)
 
 <h1 id="显示反汇编代码"><a href="#显示反汇编代码" class="headerlink" title="显示反汇编代码"></a>显示反汇编代码</h1><figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line"><span class="keyword">disas </span>  <span class="comment"># 打印当前执行函数的汇编代码</span></span><br><span class="line"><span class="keyword">disas </span>函数名   <span class="comment"># 查看指定函数的汇编代码</span></span><br><span class="line">layout asm  <span class="comment"># 分屏显示反汇编后的代码</span></span><br></pre></td></tr></table></figure>
 <p><code>disas</code>是<code>disassemble</code>的缩写</p>
-<h1 id="分屏控制"><a href="#分屏控制" class="headerlink" title="分屏控制"></a>分屏控制</h1><figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">refresh <span class="comment"># 重新绘制屏幕</span></span><br><span class="line"></span><br><span class="line">layout <span class="keyword">asm</span>  <span class="comment"># 分屏显示反汇编后的代码</span></span><br><span class="line">layout regs <span class="comment"># 分屏显示寄存器和源代码</span></span><br><span class="line">layout src  <span class="comment"># 分屏显示源代码</span></span><br><span class="line"></span><br><span class="line">focus <span class="keyword">next</span>  <span class="comment"># 焦点切换到下一个屏幕</span></span><br><span class="line">focus <span class="keyword">asm</span>   <span class="comment"># 焦点切换到asm屏幕</span></span><br><span class="line">focus cmd</span><br><span class="line">focus src</span><br></pre></td></tr></table></figure>
-<h1 id="其他技巧"><a href="#其他技巧" class="headerlink" title="其他技巧"></a>其他技巧</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">Enter</span>] <span class="meta"># 执行上一次运行的命令</span></span><br></pre></td></tr></table></figure>
+<h1 id="分屏控制"><a href="#分屏控制" class="headerlink" title="分屏控制"></a>分屏控制</h1><figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">refresh <span class="comment"># 重新绘制屏幕</span></span><br><span class="line"></span><br><span class="line">layout <span class="keyword">asm</span>  <span class="comment"># 分屏显示反汇编后的代码</span></span><br><span class="line">layout regs <span class="comment"># 分屏显示寄存器和源代码</span></span><br><span class="line">layout src  <span class="comment"># 分屏显示源代码</span></span><br><span class="line"></span><br><span class="line">focus <span class="keyword">next</span>  <span class="comment"># 焦点切换到下一个屏幕</span></span><br><span class="line">focus <span class="keyword">asm</span>   <span class="comment"># 焦点切换到asm屏幕</span></span><br><span class="line">focus cmd</span><br><span class="line">focus src</span><br><span class="line"></span><br><span class="line">winheight src -<span class="number">1</span>  <span class="comment"># 源代码窗口高度减1</span></span><br></pre></td></tr></table></figure>
+<h1 id="其他技巧"><a href="#其他技巧" class="headerlink" title="其他技巧"></a>其他技巧</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">Enter</span>] <span class="meta"># 执行上一次运行的命令</span></span><br><span class="line">[<span class="meta">Ctrl + P</span>]  <span class="meta"># 上一条命令</span></span><br><span class="line">[<span class="meta">Ctrl + N</span>]  <span class="meta"># 下一条命令</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><blockquote>
 <p><a href="https://www.cnblogs.com/lvdongjie/p/8994092.html">https://www.cnblogs.com/lvdongjie/p/8994092.html</a><br><a href="http://c.biancheng.net/gdb/">http://c.biancheng.net/gdb/</a><br><a href="https://zhuanlan.zhihu.com/p/429118840">https://zhuanlan.zhihu.com/p/429118840</a><br><a href="https://zhuanlan.zhihu.com/p/74897601">https://zhuanlan.zhihu.com/p/74897601</a></p>
@@ -1466,6 +1465,67 @@ E ---&gt;|否| C(入一位)
       <tags>
         <tag>Bug</tag>
         <tag>GDB</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>FFmpeg使用GPU编解码</title>
+    <url>/blog/2022/10/21/FFmpeg%E4%BD%BF%E7%94%A8GPU%E7%BC%96%E8%A7%A3%E7%A0%81/</url>
+    <content><![CDATA[<ul>
+<li>本文内容只针对<code>NVIDIA</code>的<code>GPU</code><span id="more"></span></li>
+</ul>
+<div class="note "><p>网络上面有一些教程需要重新编译<code>FFmpeg</code>，经过我的实验，直接使用软件包管理器安装的<code>FFmpeg</code>也可以直接使用<code>GPU</code>加速。</p>
+</div>
+<div class="note "><p>请提前安装<code>CUDA</code></p>
+</div>
+
+<p>查看支持的编解码器：</p>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">ffmpeg -codecs <span class="string">| grep cuvid</span></span><br></pre></td></tr></table></figure>
+
+<p>转码命令：</p>
+<figure class="highlight llvm"><table><tr><td class="code"><pre><span class="line">ffmpeg -hwaccel cuvid -<span class="keyword">c</span>:v 解码器 -i <span class="string">&quot;input.mkv&quot;</span> -<span class="keyword">c</span>:v 编码器 <span class="string">&quot;output.mkv&quot;</span></span><br></pre></td></tr></table></figure>
+
+<div class="note "><p>如果编解码器都在<code>GPU</code>上，则添加<code>-hwaccel cuvid</code>可以防止解码后的数据在主机和设备之间移动，如果使用<code>GPU</code>解码、使用<code>CPU</code>编码，则不需要添加这一个参数。</p>
+</div>
+
+<p>例如使用<code>h264_cuvid</code>解码再用<code>h264_nvenc</code>编码：</p>
+<figure class="highlight llvm"><table><tr><td class="code"><pre><span class="line">ffmpeg -hwaccel cuvid -<span class="keyword">c</span>:v h<span class="number">264</span>_cuvid -i <span class="string">&quot;input.mkv&quot;</span> -<span class="keyword">c</span>:v h<span class="number">264</span>_nvenc <span class="string">&quot;output.mkv&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>例如使用<code>hevc_cuvid</code>解码再用<code>hevc</code>（在<code>CPU</code>上）编码：</p>
+<figure class="highlight llvm"><table><tr><td class="code"><pre><span class="line">ffmpeg -<span class="keyword">c</span>:v hevc_cuvid -i <span class="string">&quot;input.mkv&quot;</span> -<span class="keyword">c</span>:v hevc <span class="string">&quot;output.mkv&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><blockquote>
+<p><a href="https://yukihane.work/li-gong/ffmpeg-with-gpu">https://yukihane.work/li-gong/ffmpeg-with-gpu</a><br><a href="https://blog.csdn.net/zengraoli/article/details/119789655">https://blog.csdn.net/zengraoli/article/details/119789655</a><br><a href="https://www.jianshu.com/p/01dcd43ac4ed">https://www.jianshu.com/p/01dcd43ac4ed</a><br><a href="https://developer.nvidia.com/zh-cn/blog/nvidia-ffmpeg-transcoding-guide/">https://developer.nvidia.com/zh-cn/blog/nvidia-ffmpeg-transcoding-guide/</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>FFmpeg</tag>
+        <tag>GPU</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 LUKS 设备上执行 TRIM</title>
+    <url>/blog/2022/10/29/%E5%9C%A8-LUKS-%E8%AE%BE%E5%A4%87%E4%B8%8A%E6%89%A7%E8%A1%8C-TRIM/</url>
+    <content><![CDATA[<span id="more"></span>
+<h1 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h1><p>运行这个脚本，就可以在指定的 <code>LUKS</code> 设备上执行<code>TRIM</code>操作</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line">sudo cryptsetup --allow-discards --persistent open <span class="variable">$1</span> luks-trim-dev</span><br><span class="line">sudo mount /dev/mapper/luks-trim-dev /mnt</span><br><span class="line">sudo fstrim -v /mnt</span><br><span class="line">sudo umount /mnt</span><br><span class="line">sudo cryptsetup close luks-trim-dev</span><br></pre></td></tr></table></figure>
+
+<p>用法：<br>假设脚本名为 <code>trimluks</code>，运行此脚本的命令</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">.<span class="regexp">/trimluks /</span>dev/设备名</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><blockquote>
+<p><a href="https://wiki.archlinux.org/title/Dm-crypt/Specialties">https://wiki.archlinux.org/title/Dm-crypt/Specialties</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>密码学</category>
+      </categories>
+      <tags>
+        <tag>密码学</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
 </search>
