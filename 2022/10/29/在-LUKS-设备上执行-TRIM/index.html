@@ -23,15 +23,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"longhao-chen.github.io","root":"/blog/","images":"/blog/images","scheme":"Muse","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/config.js"></script>
 
-    <meta name="description" content="脚本运行这个脚本，就可以在指定的 LUKS 设备上执行TRIM操作 123456#! &#x2F;bin&#x2F;bashsudo cryptsetup --allow-discards --persistent open $1 luks-trim-devsudo mount &#x2F;dev&#x2F;mapper&#x2F;luks-trim-dev &#x2F;mntsudo fstrim -v &#x2F;mntsudo umount &#x2F;mntsudo">
+    <meta name="description" content="默认情况下，LUKS是不会执行TRIM操作，但可以手动触发。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 LUKS 设备上执行 TRIM">
 <meta property="og:url" content="https://longhao-chen.github.io/blog/2022/10/29/%E5%9C%A8-LUKS-%E8%AE%BE%E5%A4%87%E4%B8%8A%E6%89%A7%E8%A1%8C-TRIM/index.html">
 <meta property="og:site_name" content="Longhao.Chen&#39;s blog">
-<meta property="og:description" content="脚本运行这个脚本，就可以在指定的 LUKS 设备上执行TRIM操作 123456#! &#x2F;bin&#x2F;bashsudo cryptsetup --allow-discards --persistent open $1 luks-trim-devsudo mount &#x2F;dev&#x2F;mapper&#x2F;luks-trim-dev &#x2F;mntsudo fstrim -v &#x2F;mntsudo umount &#x2F;mntsudo">
+<meta property="og:description" content="默认情况下，LUKS是不会执行TRIM操作，但可以手动触发。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-29T09:23:42.000Z">
-<meta property="article:modified_time" content="2022-10-29T09:23:42.000Z">
+<meta property="article:modified_time" content="2022-11-04T04:18:40.000Z">
 <meta property="article:author" content="Longhao.Chen">
 <meta property="article:tag" content="密码学">
 <meta property="article:tag" content="Linux">
@@ -164,7 +164,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/blog/archives/">
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -266,6 +266,13 @@
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-11-04 12:18:40" itemprop="dateModified" datetime="2022-11-04T12:18:40+08:00">2022-11-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
@@ -292,7 +299,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>309</span>
+      <span>339</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -310,7 +317,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <span id="more"></span>
+        <p>默认情况下，<code>LUKS</code>是不会执行<code>TRIM</code>操作，但可以手动触发。</p>
+<span id="more"></span>
 <h1 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h1><p>运行这个脚本，就可以在指定的 <code>LUKS</code> 设备上执行<code>TRIM</code>操作</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line">sudo cryptsetup --allow-discards --persistent open <span class="variable">$1</span> luks-trim-dev</span><br><span class="line">sudo mount /dev/mapper/luks-trim-dev /mnt</span><br><span class="line">sudo fstrim -v /mnt</span><br><span class="line">sudo umount /mnt</span><br><span class="line">sudo cryptsetup close luks-trim-dev</span><br></pre></td></tr></table></figure>
 
@@ -342,6 +350,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/blog/2022/11/04/%E8%A7%A3%E5%86%B3%E8%BF%9E%E6%8E%A5%E8%93%9D%E7%89%99%E6%97%B6%E6%8C%82%E8%B5%B7%E5%90%8E%E4%B8%8D%E7%BB%8F%E6%93%8D%E4%BD%9C%E5%B0%B1%E7%AB%8B%E5%8D%B3%E5%94%A4%E9%86%92/" rel="next" title="解决连接蓝牙时挂起后不经操作就立即唤醒">
+                  解决连接蓝牙时挂起后不经操作就立即唤醒 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -400,7 +411,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:12</span>
+    <span title="站点阅读时长">1:13</span>
   </span>
 </div>
 <div class="busuanzi-count">
