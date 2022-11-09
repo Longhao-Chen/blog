@@ -1551,4 +1551,29 @@ E ---&gt;|否| C(入一位)
         <tag>Bug</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Linux 下创建空文件的几种方法</title>
+    <url>/blog/2022/11/10/Linux-%E4%B8%8B%E5%88%9B%E5%BB%BA%E7%A9%BA%E6%96%87%E4%BB%B6%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>这里会介绍几种在<code>Linux</code>上创建全零文件的几种方法。</p>
+<span id="more"></span>
+<h1 id="普通文件"><a href="#普通文件" class="headerlink" title="普通文件"></a>普通文件</h1><p>普通文件会实际占用相应的磁盘空间</p>
+<p>以创建<code>10GiB</code>的文件为例，这要求你磁盘有至少<code>10GiB</code>的空闲空间。</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">dd <span class="attribute">if</span>=/dev/zero <span class="attribute">of</span>=test <span class="attribute">bs</span>=1G <span class="attribute">count</span>=10</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">fallocate</span> -l <span class="number">10</span>G test</span><br></pre></td></tr></table></figure>
+
+<p>其中，使用<code>fallocate</code>的效率高于<code>dd</code></p>
+<h1 id="空洞文件"><a href="#空洞文件" class="headerlink" title="空洞文件"></a>空洞文件</h1><p>空洞文件不会实际分配磁盘空间，只会在写入时分配，因此，我们可以创建远大于磁盘空间的文件</p>
+<p>以创建<code>10TiB</code>的文件为例，这 不要求 你磁盘有<code>10TiB</code>的空闲空间。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">truncate</span> -s 10T <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
 </search>
