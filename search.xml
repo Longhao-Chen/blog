@@ -1576,4 +1576,64 @@ E ---&gt;|否| C(入一位)
         <tag>Linux</tag>
       </tags>
   </entry>
+  <entry>
+    <title>在GPU上使用MPS(Multi-Process Service)</title>
+    <url>/blog/2022/11/17/%E5%9C%A8GPU%E4%B8%8A%E4%BD%BF%E7%94%A8MPS-Multi-Process-Service/</url>
+    <content><![CDATA[<p><code>MPS(Multi-Process Service)</code>允许多个CPU进程共享同一<code>GPU context</code>，这样可以在很多情况下提高<code>GPU</code>利用率和占用率，从而加快计算的速度。</p>
+<span id="more"></span>
+<h1 id="MPS-的使用限制"><a href="#MPS-的使用限制" class="headerlink" title="MPS 的使用限制"></a>MPS 的使用限制</h1><ul>
+<li>只支持<code>Linux</code></li>
+<li><code>GPU</code>计算能力大于等于3.5</li>
+<li><code>CUDA</code>版本大于等于5.5</li>
+</ul>
+<div class="note "><p>本文中，<code>CUDA</code>版本为11.7</p>
+</div>
+
+<h1 id="启用-MPS"><a href="#启用-MPS" class="headerlink" title="启用 MPS"></a>启用 MPS</h1><p>假设在<code>GPU0</code>上启用</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">sudo nvidia-smi -i 0 -c EXCLUSIVE_PROCESS</span><br><span class="line"><span class="built_in">export</span> <span class="attribute">CUDA_VISIBLE_DEVICES</span>=0</span><br><span class="line">nvidia-cuda-mps-control –d</span><br></pre></td></tr></table></figure>
+<div class="note "><p>如果运行<code>nvidia-cuda-mps-control –d</code>时显示：<br><code>Cannot find MPS control daemon process</code><br>可以考虑先运行<code>nvidia-cuda-mps-control –f</code>，然后终止，再运行<code>nvidia-cuda-mps-control –d</code>，具体原因未知。</p>
+</div>
+
+<h1 id="查看-MPS"><a href="#查看-MPS" class="headerlink" title="查看 MPS"></a>查看 MPS</h1><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ps</span> -ef | <span class="keyword">grep</span> mps</span><br></pre></td></tr></table></figure>
+<p>上述命令应该可以看到<code>nvidia-cuda-mps-control –d</code>这个进程</p>
+<p>如果运行一个<code>CUDA</code>程序，使用<code>nvidia-smi</code>，应该可以看到类型一行中为<code>M+C</code></p>
+<h1 id="关闭-MPS"><a href="#关闭-MPS" class="headerlink" title="关闭 MPS"></a>关闭 MPS</h1><figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="keyword">quit</span> | nvidia-cuda-mps-control</span><br><span class="line">sudo nvidia-smi -i 0 -c DEFAULT</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考和更多信息"><a href="#参考和更多信息" class="headerlink" title="参考和更多信息"></a>参考和更多信息</h1><blockquote>
+<p><a href="https://www.nvidia.cn/content/dam/en-zz/zh_cn/assets/webinars/31oct2019c/20191031_MPS_davidwu.pdf">https://www.nvidia.cn/content/dam/en-zz/zh_cn/assets/webinars/31oct2019c/20191031_MPS_davidwu.pdf</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>数值计算</category>
+        <category>CUDA</category>
+      </categories>
+      <tags>
+        <tag>CUDA</tag>
+        <tag>异构计算</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CUDA 计算模式</title>
+    <url>/blog/2022/11/17/CUDA-%E8%AE%A1%E7%AE%97%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<p><code>CUDA</code>有三种计算模式，分别为: <code>DEFAULT</code>、<code>EXCLUSIVE_PROCESS</code>和<code>PROHIBITED</code></p>
+<span id="more"></span>
+<h1 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h1><h2 id="DEFAULT"><a href="#DEFAULT" class="headerlink" title="DEFAULT"></a>DEFAULT</h2><p>默认模式：每个设备上允许有多个上下文，也就是说可以有多个主机线程使用此设备</p>
+<h2 id="EXCLUSIVE-PROCESS"><a href="#EXCLUSIVE-PROCESS" class="headerlink" title="EXCLUSIVE_PROCESS"></a>EXCLUSIVE_PROCESS</h2><p>独占模式：只运行每个设备上存在一个上下文，也就是说同一时间只能有一个主机线程使用。</p>
+<p>上下文可以是创建该上下文的进程中任意多个线程的当前上下文，在使用<code>MPS</code>时，通常会切换到此模式。</p>
+<h2 id="PROHIBITED"><a href="#PROHIBITED" class="headerlink" title="PROHIBITED"></a>PROHIBITED</h2><p>禁止计算模式：不允许创建上下文，此时不能使用<code>CUDA</code>进行计算。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><blockquote>
+<p><a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#compute-modes">https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#compute-modes</a><br>nvidia-smi的man手册</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>数值计算</category>
+        <category>CUDA</category>
+      </categories>
+      <tags>
+        <tag>CUDA</tag>
+        <tag>异构计算</tag>
+      </tags>
+  </entry>
 </search>
