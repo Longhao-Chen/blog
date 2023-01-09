@@ -1761,4 +1761,22 @@ E ---&gt;|否| C(入一位)
         <tag>Linux</tag>
       </tags>
   </entry>
+  <entry>
+    <title>文件系统缓存管理工具 vmtouch</title>
+    <url>/blog/2023/01/09/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%BC%93%E5%AD%98%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-vmtouch/</url>
+    <content><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>对于<code>debian</code>系：</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">sudo apt <span class="keyword">install</span> vmtouch</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h1 id="查看缓存情况"><a href="#查看缓存情况" class="headerlink" title="查看缓存情况"></a>查看缓存情况</h1><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">vmtouch</span> 文件或目录名</span><br></pre></td></tr></table></figure>
+
+<h1 id="其他功能"><a href="#其他功能" class="headerlink" title="其他功能"></a>其他功能</h1><p><code>vmtouch</code>还可以将文件载入缓存或锁定缓存，具体可见官方文档：<br><a href="https://github.com/hoytech/vmtouch/blob/master/vmtouch.pod">https://github.com/hoytech/vmtouch/blob/master/vmtouch.pod</a></p>
+]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
 </search>
