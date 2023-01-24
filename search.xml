@@ -2131,4 +2131,30 @@ E ---&gt;|否| C(入一位)
         <category>计算机</category>
       </categories>
   </entry>
+  <entry>
+    <title>恢复 KDE 应用程序菜单栏</title>
+    <url>/blog/2023/01/24/%E6%81%A2%E5%A4%8D-KDE-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E8%8F%9C%E5%8D%95%E6%A0%8F/</url>
+    <content><![CDATA[<p>在 KDE Plasma 5.9 及之后的版本中，如果添加了<code>标题栏按钮</code>或<code>应用程序菜单组件</code>后，即使移除这些组件，应用程序菜单栏也不会自动恢复。</p>
+<span id="more"></span>
+<h1 id="恢复方法"><a href="#恢复方法" class="headerlink" title="恢复方法"></a>恢复方法</h1><ol>
+<li>打开”设置”</li>
+<li>点击”开机与关机”</li>
+<li>点击”后台服务”</li>
+<li>去除勾选”应用程序菜单守护程序”</li>
+<li>切换”应用程序菜单守护程序”为未运行状态</li>
+<li>点击”应用”</li>
+</ol>
+<p>此时大部分应用程序的菜单栏应该会出现，但可能仍会有小部分未出现。<br>打开没有出现应用程序菜单栏的应用，按<code>Ctrl+M</code>即可显示菜单栏（如果不行可以尝试多按几次）</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/383093876">https://zhuanlan.zhihu.com/p/383093876</a><br><a href="https://askubuntu.com/questions/30180/menubar-hidden-in-all-kde-apps">https://askubuntu.com/questions/30180/menubar-hidden-in-all-kde-apps</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
 </search>
