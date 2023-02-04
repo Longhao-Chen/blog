@@ -2186,4 +2186,22 @@ E ---&gt;|否| C(入一位)
         <tag>信息安全</tag>
       </tags>
   </entry>
+  <entry>
+    <title>媒体文件系统 FFmpegfs</title>
+    <url>/blog/2023/02/03/ffmpegfs/</url>
+    <content><![CDATA[<p><code>ffmpegfs</code>是一个文件系统，可以将媒体文件转换为指定格式。</p>
+<span id="more"></span>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>源目录<code>media</code>，目标目录<code>ffmpegfs</code>，将源目录的媒体转换为<code>mkv</code>或<code>flac</code>格式，使用<code>VAAPI</code>进行硬件加速：</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">ffmpegfs media/ ffmpegfs/ -o <span class="attribute">desttype</span>=mkv+flac <span class="attribute">--hwaccel_enc</span>=VAAPI <span class="attribute">--hwaccel_dec</span>=VAAPI</span><br></pre></td></tr></table></figure>
+<h1 id="更多参考"><a href="#更多参考" class="headerlink" title="更多参考"></a>更多参考</h1><blockquote>
+<p><a href="https://linuxlog.cyou/post/22676.html">https://linuxlog.cyou/post/22676.html</a><br><a href="https://nschlia.github.io/ffmpegfs/html/md_README.html">https://nschlia.github.io/ffmpegfs/html/md_README.html</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>FFmpeg</tag>
+      </tags>
+  </entry>
 </search>
