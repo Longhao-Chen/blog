@@ -2204,4 +2204,20 @@ E ---&gt;|否| C(入一位)
         <tag>FFmpeg</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Firefox禁用更新提醒但保留手动更新功能</title>
+    <url>/blog/2023/07/08/Firefox%E7%A6%81%E7%94%A8%E6%9B%B4%E6%96%B0%E6%8F%90%E9%86%92%E4%BD%86%E4%BF%9D%E7%95%99%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0%E5%8A%9F%E8%83%BD/</url>
+    <content><![CDATA[<p>打开<code>Firefox</code>的安装路径，创建文件<code>distribution/policies.json</code> （如果目录不存在则创建目录），将一下内容粘贴到文件中：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;policies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;ManualAppUpdateOnly&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>然后重启浏览器。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://mozilla.github.io/policy-templates/#manualappupdateonly">https://mozilla.github.io/policy-templates/#manualappupdateonly</a></p>
+]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>Firefox</tag>
+      </tags>
+  </entry>
 </search>
