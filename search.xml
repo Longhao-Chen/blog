@@ -978,6 +978,8 @@ section Go home
 <p>或者可以使用<code>apt</code>：</p>
 <figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">apt <span class="keyword">install</span> python3-virtualenv</span><br></pre></td></tr></table></figure>
 <h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><h2 id="创建一个虚拟环境"><a href="#创建一个虚拟环境" class="headerlink" title="创建一个虚拟环境:"></a>创建一个虚拟环境:</h2><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">virtualenv</span> 环境保存路径名</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建环境并重用系统已经安装的包"><a href="#创建环境并重用系统已经安装的包" class="headerlink" title="创建环境并重用系统已经安装的包"></a>创建环境并重用系统已经安装的包</h2><figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">virtualenv <span class="comment">--system-site-packages 环境保存路径名</span></span><br></pre></td></tr></table></figure>
 <h2 id="激活环境"><a href="#激活环境" class="headerlink" title="激活环境"></a>激活环境</h2><figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line"><span class="keyword">source</span> 环境保存路径名<span class="regexp">/bin/</span>activate</span><br></pre></td></tr></table></figure>
 
 <p>现在就可以在这个虚拟环境中直接使用<code>pip</code>等安装<code>Python</code>包，当前虚拟环境名也会显示在命令行前。</p>
