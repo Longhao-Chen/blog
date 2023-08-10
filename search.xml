@@ -2222,4 +2222,26 @@ E ---&gt;|否| C(入一位)
         <tag>Firefox</tag>
       </tags>
   </entry>
+  <entry>
+    <title>CUDA 在休眠唤醒后无法使用</title>
+    <url>/blog/2023/08/10/CUDA-%E5%9C%A8%E4%BC%91%E7%9C%A0%E5%94%A4%E9%86%92%E5%90%8E%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>创建文件 <code>/etc/modprobe.d/nvidia-suspend.conf</code> 并在内写入：</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">options nvidia <span class="attribute">NVreg_PreserveVideoMemoryAllocations</span>=1 <span class="attribute">NVreg_TemporaryFilePath</span>=/tmp</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>更新：</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">sudo update-initramfs -u</span></span><br></pre></td></tr></table></figure>
+<p>再启用休眠服务：</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> nvidia-suspend.service</span><br></pre></td></tr></table></figure>
+<p>然后重启</p>
+]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>CUDA</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>CUDA</tag>
+        <tag>GPU</tag>
+      </tags>
+  </entry>
 </search>
