@@ -2233,6 +2233,9 @@ E ---&gt;|否| C(入一位)
 <p>再启用休眠服务：</p>
 <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> nvidia-suspend.service</span><br></pre></td></tr></table></figure>
 <p>然后重启</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><blockquote>
+<p><a href="https://askubuntu.com/questions/1228423/how-do-i-fix-cuda-breaking-after-suspend">https://askubuntu.com/questions/1228423/how-do-i-fix-cuda-breaking-after-suspend</a></p>
+</blockquote>
 ]]></content>
       <categories>
         <category>计算机</category>
