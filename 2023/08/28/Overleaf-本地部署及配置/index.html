@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://unpkg.com/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"longhao-chen.github.io","root":"/blog/","images":"/blog/images","scheme":"Muse","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/config.js"></script>
+
+    <meta name="description" content="需要预先安装docker和docker-compose">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Overleaf 本地部署及配置">
+<meta property="og:url" content="https://longhao-chen.github.io/blog/2023/08/28/Overleaf-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E5%8F%8A%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Longhao.Chen&#39;s blog">
+<meta property="og:description" content="需要预先安装docker和docker-compose">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-28T11:10:36.000Z">
+<meta property="article:modified_time" content="2023-08-28T11:10:36.000Z">
+<meta property="article:author" content="Longhao.Chen">
+<meta property="article:tag" content="LaTex">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://longhao-chen.github.io/blog/2023/08/28/Overleaf-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E5%8F%8A%E9%85%8D%E7%BD%AE/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://longhao-chen.github.io/blog/2023/08/28/Overleaf-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E5%8F%8A%E9%85%8D%E7%BD%AE/","path":"2023/08/28/Overleaf-本地部署及配置/","title":"Overleaf 本地部署及配置"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Overleaf 本地部署及配置 | Longhao.Chen's blog</title>
+  
+
+  <script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?8b29dc202829e51f566b3ba2d587a4d9"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Longhao.Chen's blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">初始配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%E6%94%AF%E6%8C%81"><span class="nav-number">2.1.</span> <span class="nav-text">中文支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xeLatex%E6%94%AF%E6%8C%81"><span class="nav-number">2.2.</span> <span class="nav-text">xeLatex支持</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8"><span class="nav-number">3.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7"><span class="nav-number">4.</span> <span class="nav-text">创建管理员账号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%AE%8C%E6%95%B4%E5%AE%8F%E5%8C%85%E6%94%AF%E6%8C%81"><span class="nav-number">5.</span> <span class="nav-text">安装完整宏包支持</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%AD%97%E4%BD%93"><span class="nav-number">6.</span> <span class="nav-text">安装字体</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Minted%E5%8C%85%E6%94%AF%E6%8C%81"><span class="nav-number">7.</span> <span class="nav-text">Minted包支持</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85pygments"><span class="nav-number">7.1.</span> <span class="nav-text">安装pygments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEShell-Escape"><span class="nav-number">7.2.</span> <span class="nav-text">配置Shell Escape</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Longhao.Chen"
+      src="/blog/images/clh-avatar.gif">
+  <p class="site-author-name" itemprop="name">Longhao.Chen</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/blog/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/blog/tags/">
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Longhao-Chen" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Longhao-Chen" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Longhao.Chen@outlook.com" title="E-Mail → mailto:Longhao.Chen@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://cspmrt.github.io/" title="https:&#x2F;&#x2F;cspmrt.github.io" rel="noopener" target="_blank">CSPMRT</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://longhao-chen.github.io/blog/2023/08/28/Overleaf-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E5%8F%8A%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/clh-avatar.gif">
+      <meta itemprop="name" content="Longhao.Chen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Longhao.Chen's blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Overleaf 本地部署及配置 | Longhao.Chen's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Overleaf 本地部署及配置
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-08-28 19:10:36" itemprop="dateCreated datePublished" datetime="2023-08-28T19:10:36+08:00">2023-08-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <div class="note info"><p>需要预先安装<code>docker</code>和<code>docker-compose</code></p>
+</div>
+<span id="more"></span>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/overleaf/toolkit.git ./overleaf-toolkit</span><br><span class="line"><span class="built_in">cd</span> ./overleaf-toolkit</span><br><span class="line">bin/init</span><br></pre></td></tr></table></figure>
+<h1 id="初始配置"><a href="#初始配置" class="headerlink" title="初始配置"></a>初始配置</h1><p>修改<code>connfig/</code>下的文件</p>
+<h2 id="中文支持"><a href="#中文支持" class="headerlink" title="中文支持"></a>中文支持</h2><p>在<code>config/variables.env</code>中添加：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">SHARELATEX_SITE_LANGUAGE</span>=zh-CN</span><br></pre></td></tr></table></figure>
+
+<h2 id="xeLatex支持"><a href="#xeLatex支持" class="headerlink" title="xeLatex支持"></a>xeLatex支持</h2><p>新建文件<code>config/docker-compose.override.yml</code>，添加：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">services:</span><br><span class="line">    sharelatex:</span><br><span class="line">        environment:</span><br><span class="line">            - PATH=<span class="regexp">/usr/</span>local<span class="regexp">/texlive/</span><span class="number">2023</span><span class="regexp">/bin/</span>x86_64-linux:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+<div class="note warning"><p><code>2023</code>请改成对应路径</p>
+</div>
+
+<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/up</span><br></pre></td></tr></table></figure>
+<p>如果要后台运行，可以加<code>-d</code>参数</p>
+<h1 id="创建管理员账号"><a href="#创建管理员账号" class="headerlink" title="创建管理员账号"></a>创建管理员账号</h1><p>打开： <a target="_blank" rel="noopener" href="http://hostip/launchpad">http://hostip/launchpad</a></p>
+<h1 id="安装完整宏包支持"><a href="#安装完整宏包支持" class="headerlink" title="安装完整宏包支持"></a>安装完整宏包支持</h1><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">bin/shell</span><br><span class="line">cd <span class="regexp">/usr/</span>local/texlive</span><br><span class="line">wget http:<span class="regexp">//mi</span>rror.ctan.org<span class="regexp">/systems/</span>texlive<span class="regexp">/tlnet/u</span>pdate-tlmgr-latest.sh</span><br><span class="line">tlmgr option repository https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="regexp">/CTAN/</span>systems<span class="regexp">/texlive/</span>tlnet</span><br><span class="line">tlmgr update --self --all</span><br><span class="line">tlmgr install scheme-full</span><br><span class="line"><span class="keyword">exit</span></span><br><span class="line">docker restart sharelatex</span><br></pre></td></tr></table></figure>
+
+<h1 id="安装字体"><a href="#安装字体" class="headerlink" title="安装字体"></a>安装字体</h1><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bin/<span class="built_in">shell</span></span><br><span class="line">apt update</span><br><span class="line">apt install --no-install-recommends ttf-mscorefonts-installe <span class="built_in">fonts</span>-noto texlive-<span class="built_in">fonts</span>-recommended tex-gyre <span class="built_in">fonts</span>-wqy-microhei <span class="built_in">fonts</span>-wqy-zenhei <span class="built_in">fonts</span>-noto-cjk <span class="built_in">fonts</span>-noto-cjk-extra <span class="built_in">fonts</span>-noto-color-emoji <span class="built_in">fonts</span>-noto-extra <span class="built_in">fonts</span>-noto-ui-core <span class="built_in">fonts</span>-noto-ui-extra <span class="built_in">fonts</span>-noto-unhinted <span class="built_in">fonts</span>-texgyre</span><br></pre></td></tr></table></figure>
+
+<h1 id="Minted包支持"><a href="#Minted包支持" class="headerlink" title="Minted包支持"></a><code>Minted</code>包支持</h1><h2 id="安装pygments"><a href="#安装pygments" class="headerlink" title="安装pygments"></a>安装<code>pygments</code></h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bin/<span class="keyword">shell</span></span><br><span class="line">apt <span class="keyword">update</span></span><br><span class="line">apt install <span class="keyword">python3</span>-pygments</span><br></pre></td></tr></table></figure>
+<h2 id="配置Shell-Escape"><a href="#配置Shell-Escape" class="headerlink" title="配置Shell Escape"></a>配置<code>Shell Escape</code></h2><div class="note warning"><p><code>2023</code>请改成对应路径</p>
+</div>
+<p>修改<code>/usr/local/texlive/2023/texmf.cnf</code>，在最底下添加一行</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">shell_escape</span> = t</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md">https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md</a><br><a target="_blank" rel="noopener" href="https://sparktour.me/2021/04/02/self-host-overleaf/">https://sparktour.me/2021/04/02/self-host-overleaf/</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/481788258">https://zhuanlan.zhihu.com/p/481788258</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/LaTex/" rel="tag"># LaTex</a>
+              <a href="/blog/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2023/08/22/KDE-%E5%85%B3%E9%97%AD%E7%AA%97%E5%8F%A3%E6%97%A0%E8%BE%B9%E6%A1%86%E6%A8%A1%E5%BC%8F/" rel="prev" title="KDE 关闭窗口无边框模式">
+                  <i class="fa fa-chevron-left"></i> KDE 关闭窗口无边框模式
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments">
+    <script src="https://giscus.app/client.js"
+        data-repo="longhao-chen/blog" 
+        data-repo-id="R_kgDOH07ucQ" 
+        data-category="Announcements"
+        data-category-id="DIC_kwDOH07ucc4CQ2pD"
+        data-mapping="pathname" 
+        data-reactions-enabled="1" 
+        data-emit-metadata="1" 
+        data-theme="dark"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        data-input-position="top"
+        data-loading="lazy"
+        async>
+    </script>
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2022 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Longhao.Chen</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">71k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:06</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://unpkg.com/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/comments.js"></script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/utils.js"></script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/motion.js"></script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/schemes/muse.js"></script><script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/next-boot.js"></script>
+
+  
+<script src="https://unpkg.com/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://unpkg.com/mermaid@9.1.3/dist/mermaid.min.js","integrity":"sha256-TIYL00Rhw/8WaoUhYTLX9SKIEFdXxg+yMWSLVUbhiLg="}}</script>
+  <script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/tags/mermaid.js"></script>
+
+
+  <script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://unpkg.com/mathjax@3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://unpkg.com/hexo-theme-next@8.12.3/source/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

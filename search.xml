@@ -2207,27 +2207,11 @@ E ---&gt;|否| C(入一位)
       </tags>
   </entry>
   <entry>
-    <title>Firefox禁用更新提醒但保留手动更新功能</title>
-    <url>/blog/2023/07/08/Firefox%E7%A6%81%E7%94%A8%E6%9B%B4%E6%96%B0%E6%8F%90%E9%86%92%E4%BD%86%E4%BF%9D%E7%95%99%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0%E5%8A%9F%E8%83%BD/</url>
-    <content><![CDATA[<p>打开<code>Firefox</code>的安装路径，创建文件<code>distribution/policies.json</code> （如果目录不存在则创建目录），将一下内容粘贴到文件中：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;policies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;ManualAppUpdateOnly&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<p>然后重启浏览器。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://mozilla.github.io/policy-templates/#manualappupdateonly">https://mozilla.github.io/policy-templates/#manualappupdateonly</a></p>
-]]></content>
-      <categories>
-        <category>计算机</category>
-      </categories>
-      <tags>
-        <tag>Firefox</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CUDA 在休眠唤醒后无法使用</title>
     <url>/blog/2023/08/10/CUDA-%E5%9C%A8%E4%BC%91%E7%9C%A0%E5%94%A4%E9%86%92%E5%90%8E%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p>创建文件 <code>/etc/modprobe.d/nvidia-suspend.conf</code> 并在内写入：</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">options nvidia <span class="attribute">NVreg_PreserveVideoMemoryAllocations</span>=1 <span class="attribute">NVreg_TemporaryFilePath</span>=/tmp</span><br></pre></td></tr></table></figure>
 <span id="more"></span>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">options nvidia <span class="attribute">NVreg_PreserveVideoMemoryAllocations</span>=1 <span class="attribute">NVreg_TemporaryFilePath</span>=/tmp</span><br></pre></td></tr></table></figure>
 <p>更新：</p>
 <figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">sudo update-initramfs -u</span></span><br></pre></td></tr></table></figure>
 <p>再启用休眠服务：</p>
@@ -2245,6 +2229,84 @@ E ---&gt;|否| C(入一位)
         <tag>Linux</tag>
         <tag>CUDA</tag>
         <tag>GPU</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Firefox 禁用更新提醒但保留手动更新功能</title>
+    <url>/blog/2023/07/08/Firefox-%E7%A6%81%E7%94%A8%E6%9B%B4%E6%96%B0%E6%8F%90%E9%86%92%E4%BD%86%E4%BF%9D%E7%95%99%E6%89%8B%E5%8A%A8%E6%9B%B4%E6%96%B0%E5%8A%9F%E8%83%BD/</url>
+    <content><![CDATA[<p>打开<code>Firefox</code>的安装路径，创建文件<code>distribution/policies.json</code> （如果目录不存在则创建目录），将一下内容粘贴到文件中：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;policies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;ManualAppUpdateOnly&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>然后重启浏览器。</p>
+<span id="more"></span>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><blockquote>
+<p><a href="https://mozilla.github.io/policy-templates/#manualappupdateonly">https://mozilla.github.io/policy-templates/#manualappupdateonly</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>Firefox</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>KDE 关闭窗口无边框模式</title>
+    <url>/blog/2023/08/22/KDE-%E5%85%B3%E9%97%AD%E7%AA%97%E5%8F%A3%E6%97%A0%E8%BE%B9%E6%A1%86%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<ul>
+<li><p><code>Alt+F3</code></p>
+</li>
+<li><p>更多操作-无边框</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>KDE</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Overleaf 本地部署及配置</title>
+    <url>/blog/2023/08/28/Overleaf-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E5%8F%8A%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<div class="note info"><p>需要预先安装<code>docker</code>和<code>docker-compose</code></p>
+</div>
+<span id="more"></span>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/overleaf/toolkit.git ./overleaf-toolkit</span><br><span class="line"><span class="built_in">cd</span> ./overleaf-toolkit</span><br><span class="line">bin/init</span><br></pre></td></tr></table></figure>
+<h1 id="初始配置"><a href="#初始配置" class="headerlink" title="初始配置"></a>初始配置</h1><p>修改<code>connfig/</code>下的文件</p>
+<h2 id="中文支持"><a href="#中文支持" class="headerlink" title="中文支持"></a>中文支持</h2><p>在<code>config/variables.env</code>中添加：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">SHARELATEX_SITE_LANGUAGE</span>=zh-CN</span><br></pre></td></tr></table></figure>
+
+<h2 id="xeLatex支持"><a href="#xeLatex支持" class="headerlink" title="xeLatex支持"></a>xeLatex支持</h2><p>新建文件<code>config/docker-compose.override.yml</code>，添加：</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">services:</span><br><span class="line">    sharelatex:</span><br><span class="line">        environment:</span><br><span class="line">            - PATH=<span class="regexp">/usr/</span>local<span class="regexp">/texlive/</span><span class="number">2023</span><span class="regexp">/bin/</span>x86_64-linux:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+<div class="note warning"><p><code>2023</code>请改成对应路径</p>
+</div>
+
+<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bin/up</span><br></pre></td></tr></table></figure>
+<p>如果要后台运行，可以加<code>-d</code>参数</p>
+<h1 id="创建管理员账号"><a href="#创建管理员账号" class="headerlink" title="创建管理员账号"></a>创建管理员账号</h1><p>打开： <a href="http://hostip/launchpad">http://hostip/launchpad</a></p>
+<h1 id="安装完整宏包支持"><a href="#安装完整宏包支持" class="headerlink" title="安装完整宏包支持"></a>安装完整宏包支持</h1><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">bin/shell</span><br><span class="line">cd <span class="regexp">/usr/</span>local/texlive</span><br><span class="line">wget http:<span class="regexp">//mi</span>rror.ctan.org<span class="regexp">/systems/</span>texlive<span class="regexp">/tlnet/u</span>pdate-tlmgr-latest.sh</span><br><span class="line">tlmgr option repository https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="regexp">/CTAN/</span>systems<span class="regexp">/texlive/</span>tlnet</span><br><span class="line">tlmgr update --self --all</span><br><span class="line">tlmgr install scheme-full</span><br><span class="line"><span class="keyword">exit</span></span><br><span class="line">docker restart sharelatex</span><br></pre></td></tr></table></figure>
+
+<h1 id="安装字体"><a href="#安装字体" class="headerlink" title="安装字体"></a>安装字体</h1><figure class="highlight gauss"><table><tr><td class="code"><pre><span class="line">bin/<span class="built_in">shell</span></span><br><span class="line">apt update</span><br><span class="line">apt install --no-install-recommends ttf-mscorefonts-installe <span class="built_in">fonts</span>-noto texlive-<span class="built_in">fonts</span>-recommended tex-gyre <span class="built_in">fonts</span>-wqy-microhei <span class="built_in">fonts</span>-wqy-zenhei <span class="built_in">fonts</span>-noto-cjk <span class="built_in">fonts</span>-noto-cjk-extra <span class="built_in">fonts</span>-noto-color-emoji <span class="built_in">fonts</span>-noto-extra <span class="built_in">fonts</span>-noto-ui-core <span class="built_in">fonts</span>-noto-ui-extra <span class="built_in">fonts</span>-noto-unhinted <span class="built_in">fonts</span>-texgyre</span><br></pre></td></tr></table></figure>
+
+<h1 id="Minted包支持"><a href="#Minted包支持" class="headerlink" title="Minted包支持"></a><code>Minted</code>包支持</h1><h2 id="安装pygments"><a href="#安装pygments" class="headerlink" title="安装pygments"></a>安装<code>pygments</code></h2><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">bin/<span class="keyword">shell</span></span><br><span class="line">apt <span class="keyword">update</span></span><br><span class="line">apt install <span class="keyword">python3</span>-pygments</span><br></pre></td></tr></table></figure>
+<h2 id="配置Shell-Escape"><a href="#配置Shell-Escape" class="headerlink" title="配置Shell Escape"></a>配置<code>Shell Escape</code></h2><div class="note warning"><p><code>2023</code>请改成对应路径</p>
+</div>
+<p>修改<code>/usr/local/texlive/2023/texmf.cnf</code>，在最底下添加一行</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">shell_escape</span> = t</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><blockquote>
+<p><a href="https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md">https://github.com/overleaf/toolkit/blob/master/doc/quick-start-guide.md</a><br><a href="https://sparktour.me/2021/04/02/self-host-overleaf/">https://sparktour.me/2021/04/02/self-host-overleaf/</a><br><a href="https://zhuanlan.zhihu.com/p/481788258">https://zhuanlan.zhihu.com/p/481788258</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>LaTex</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
 </search>
